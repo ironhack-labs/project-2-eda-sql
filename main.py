@@ -14,5 +14,5 @@ themes = pd.read_csv("C:/Users/dusan/Documents/GitHub/project-2-eda-sql/themes.c
 
 
 # Understanding the data
-colors.head()
 
+print(colors.head())
