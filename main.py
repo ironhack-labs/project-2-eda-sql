@@ -1,6 +1,11 @@
 # IMPORTING LIBRARIES
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from sqlalchemy import create_engine
+from sqlalchemy import text
 
 
 # READING THE DATA
@@ -33,13 +38,6 @@ df.columns = df.columns.str.replace(' ', '_')
 # SORTING THE DATA
 
 df_sorted = df.sort_values(by='Total_Speakers', ascending=False)
-
-
-# IMPORTING VISUALIZATION LIBRARIES
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 
 
 # PLOTTING THE TOP 10 LANGUAGES BY TOTAL SPEAKERS
@@ -81,12 +79,6 @@ plt.title('Correlation between Native and Total Speakers')
 plt.show()
 
 
-# CONNECTING TO A MYSQL DATABASE
-
-import pandas as pd
-from sqlalchemy import create_engine
-
-
 # CREATING THE ENGINE TO CONNECT TO THE DATABASE
 
 engine = create_engine('mysql+pymysql://root:Adrian021218@localhost/top_languages_db')
@@ -105,11 +97,6 @@ df = pd.DataFrame({
 # UPLOADING THE DATA TO THE MYSQL DATABASE
 
 df.to_sql('top_languages_db', con=engine, if_exists='replace', index=False)
-
-
-# QUERYING DATA FROM THE MYSQL DATABASE
-
-from sqlalchemy import text
 
 
 # EXECUTING A QUERY TO RETRIEVE DATA
