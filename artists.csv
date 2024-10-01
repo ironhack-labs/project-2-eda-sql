@@ -1,0 +1,95 @@
+Artist,artist_id,goat
+38 Special,0,False
+ABBA,1,False
+Aerosmith,2,True
+Air Suppy,3,False
+Alice Cooper,4,False
+Allman Brothers,5,False
+America,6,False
+Bachman-Turner Overdrive,7,False
+Bad Company,8,False
+Bee Gees,9,False
+Billy Joel,10,False
+Black Sabbath,11,True
+Blondie,12,False
+Blue Oyster Cult,13,False
+Bob Dylan,14,True
+Bob Seger,15,False
+Bon Jovi,16,False
+Boston,17,False
+Cheap Trick,18,False
+Chicago,19,False
+Cream,20,True
+Creedence Clearwater Revival,21,True
+Crosby Sitlls Nash Young,22,False
+David Bowie,23,True
+Deep Purple,24,False
+Def Leppard,25,False
+Dire Straits,26,False
+Don Henley,27,False
+Duran Duran,28,False
+Eagles,29,True
+Electric Light Orchestra,30,False
+Elton John,31,True
+Emerson Lake & Palmer,32,False
+Eric Clapton,33,True
+Eurythmics,34,False
+Fleetwood Mac,35,False
+Foghat,36,False
+Genesis,37,False
+Grand Funk Railroad,38,False
+Heart,39,False
+Huey Lewis,40,False
+INXS,41,False
+Iron Maiden,42,False
+Janis Joplin,43,True
+Jefferson Airplane,44,False
+Jethro Tull,45,False
+Joe Walsh,46,False
+John Lennon,47,True
+Journey,48,False
+Judas Priest,49,False
+Kiss,50,False
+Led Zeppelin,51,True
+Little River Band,52,False
+Lynyrd Skynyrd,53,True
+Meat Loaf,54,False
+Metallica,55,True
+Moody Blues,56,False
+Motley Crue,57,False
+Nitty Gritty Dirt Band,58,False
+Ozzy Osbourne,59,False
+Pat Benetar,60,False
+Paul Simon,61,False
+Peter Gabrial,62,False
+Pink Floyd,63,True
+Queen,64,True
+Queensryche,65,False
+Quiet Riot,66,False
+REO Speed Wagon,67,False
+Robert Plant,68,False
+Rush,69,False
+Santana,70,False
+Scorpions,71,False
+Simon And Garfunkel,72,False
+Simple Minds,73,False
+Steely Dan,74,False
+Steppenwolf,75,False
+Steve Miller Band,76,False
+Stevie Nicks,77,False
+Stevie Ray Vaughn,78,False
+Styx,79,False
+Supertramp,80,False
+The Cars,81,False
+The Doobie Brothers,82,False
+The Doors,83,False
+The Police,84,False
+The Rolling Stones,85,False
+The Who,86,False
+Three Dog Night,87,False
+Tina Turner,88,True
+Toto,89,False
+Twisted Sister,90,False
+Van Halen,91,False
+Whitesnake,92,False
+ZZ Top,93,False
