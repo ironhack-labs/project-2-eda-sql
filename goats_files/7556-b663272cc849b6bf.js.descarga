@@ -1,0 +1,477 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[7556],{74613:function(e,t,i){i.d(t,{w:function(){return n}});var a=i(30382),r=i.n(a);let n=r()`
+    fragment ImageListItemMetadata on Image {
+        id
+        url
+        height
+        width
+        caption {
+            plainText
+        }
+        names(limit: 4) {
+            id
+            nameText {
+                text
+            }
+        }
+        titles(limit: 1) {
+            id
+            titleText {
+                text
+            }
+            originalTitleText {
+                text
+            }
+            releaseYear {
+                year
+                endYear
+            }
+        }
+    }
+`},8768:function(e,t,i){i.d(t,{E:function(){return n},k:function(){return s}});var a=i(30382),r=i.n(a);let n=r()`
+    fragment NameListItemMetadata on Name {
+        id
+        primaryImage {
+            url
+            caption {
+                plainText
+            }
+            width
+            height
+        }
+        nameText {
+            text
+        }
+        primaryProfessions {
+            category {
+                text
+            }
+        }
+        knownFor(first: 1) {
+            edges {
+                node {
+                    summary {
+                        yearRange {
+                            year
+                            endYear
+                        }
+                    }
+                    title {
+                        id
+                        originalTitleText {
+                            text
+                        }
+                        titleText {
+                            text
+                        }
+                        titleType {
+                            canHaveEpisodes
+                        }
+                    }
+                }
+            }
+        }
+        bio {
+            displayableArticle {
+                body {
+                    plaidHtml(
+                        queryParams: $refTagQueryParam
+                        showOriginalTitleText: $originalTitleText
+                    )
+                }
+            }
+        }
+    }
+`,s=r()`
+    fragment NameMeterRanking on Name {
+        meterRanking {
+            currentRank
+            rankChange {
+                changeDirection
+                difference
+            }
+        }
+    }
+`},19369:function(e,t,i){i.d(t,{EC:function(){return l},O4:function(){return n},nq:function(){return o},rc:function(){return s}});var a=i(30382),r=i.n(a);let n=r()`
+    fragment UserListListItemMetadata on List {
+        author {
+            nickName
+            userId
+        }
+        id
+        name {
+            originalText
+        }
+        listType {
+            id
+        }
+        listClass {
+            id
+            name {
+                text
+            }
+        }
+        description {
+            originalText {
+                plaidHtml(showLineBreak: true)
+                markdown
+                plainText
+            }
+        }
+        items(first: 0) {
+            total
+        }
+        createdDate
+        lastModifiedDate
+        primaryImage {
+            image {
+                id
+                caption {
+                    plainText
+                }
+                height
+                width
+                url
+            }
+        }
+        visibility {
+            id
+        }
+    }
+`,s=r()`
+    fragment EditListItemMetadata on ListItemNode {
+        itemId
+        createdDate
+        description {
+            originalText {
+                markdown
+                plaidHtml(showLineBreak: true)
+                plainText
+            }
+        }
+    }
+`,o=r()`
+    fragment ViewListItemMetadata on ListItemNode {
+        itemId
+        createdDate
+        description {
+            originalText {
+                plaidHtml(showLineBreak: true)
+            }
+        }
+    }
+`,l=r()`
+    fragment ListSearchItemMetadata on ListItemSearchNode {
+        itemId
+        createdDate
+        description {
+            originalText {
+                plaidHtml(showLineBreak: true)
+            }
+        }
+    }
+`;r()`
+    fragment NameChartItemMetadata on ChartNameEdge {
+        currentRank
+        rankChange {
+            changeDirection
+            difference
+        }
+    }
+`,r()`
+    fragment TitleChartItemMetadata on ChartTitleEdge {
+        currentRank
+        rankChange {
+            changeDirection
+            difference
+        }
+    }
+`},36565:function(e,t,i){i.d(t,{Dl:function(){return s},Zz:function(){return l},_A:function(){return d},f1:function(){return c},qp:function(){return m},vO:function(){return o}});var a=i(30382),r=i.n(a),n=i(55230);let s=r()`
+    fragment TitleTopCastAndCrew on Title {
+        id
+        principalCredits(
+            filter: { categories: ["cast", "director", "creator"] }
+        ) {
+            category {
+                id
+            }
+            credits {
+                name {
+                    id
+                    nameText {
+                        text
+                    }
+                }
+            }
+        }
+    }
+`,o=r()`
+    fragment TitleMeterRanking on Title {
+        meterRanking {
+            currentRank
+            rankChange {
+                changeDirection
+                difference
+            }
+        }
+    }
+`,l=r()`
+    fragment TitleListItemMetadata on Title {
+        ...BaseTitleCard
+        plot {
+            plotText {
+                plainText
+            }
+        }
+        latestTrailer {
+            id
+        }
+        series {
+            series {
+                id
+                originalTitleText {
+                    text
+                }
+                releaseYear {
+                    endYear
+                    year
+                }
+                titleText {
+                    text
+                }
+            }
+        }
+    }
+    ${n.c.fragments.baseTitleCard}
+`,d=r()`
+    fragment TitleListItemMetascore on Title {
+        metacritic {
+            metascore {
+                score
+            }
+        }
+    }
+`,c=r()`
+    fragment TitleTotalEpisodes on Title {
+        episodes {
+            episodes(first: 0) {
+                total
+            }
+        }
+    }
+`,m=r()`
+    fragment TitleListFacetFields on TitleListItemSearchConnection {
+        genres: facet(facetField: GENRES) {
+            filterId
+            text
+            total
+        }
+
+        keywords: facet(facetField: KEYWORDS) {
+            filterId
+            text
+            total
+        }
+
+        watchOptions: facet(facetField: WATCH_PROVIDERS) {
+            filterId
+            text
+            total
+        }
+
+        titleTypes: facet(facetField: TITLE_TYPE) {
+            filterId
+            text
+            total
+        }
+    }
+`},54786:function(e,t,i){i.d(t,{X:function(){return n}});var a=i(30382),r=i.n(a);let n=r()`
+    fragment VideoListItemMetadata on Video {
+        id
+        thumbnail {
+            url
+            width
+            height
+        }
+        name {
+            value
+            language
+        }
+        description {
+            value
+            language
+        }
+        runtime {
+            unit
+            value
+        }
+        primaryTitle {
+            id
+            originalTitleText {
+                text
+            }
+            titleText {
+                text
+            }
+            titleType {
+                canHaveEpisodes
+            }
+            releaseYear {
+                year
+                endYear
+            }
+        }
+    }
+`},40701:function(e,t,i){i.d(t,{Z:function(){return H}});var a=i(52322),r=i(30382),n=i.n(r),s=i(2784),o=i(79855),l=i(19596),d=i(45103),c=i(91842),m=i(78543),u=i(13433),p=i(84926),g=i(52817),f=i(40214),T=i(58605),I=i(60220),h=i(25592),C=i(72814),x=i(98046),L=i(50926),y=i(72072),_=i(28827),b=i(14846);let E=n()`
+    fragment AddConstToListMenuItem on List {
+        id
+        name {
+            originalText
+        }
+    }
+`,P=e=>{let{value:t}=(0,C.L)(),{listMainLinkBuilder:i}=(0,h.WO)(),{constId:r,onError:n}=e,o=e.listData.id,l=e.listData.name?.originalText||"",c=(0,_.N)({id:"addConstToListMenuItem_goToList_ariaLabel",defaultMessage:"Go to list: {listTitle}"},{listTitle:l}),m=(0,_.N)({id:"user_your_checkins",defaultMessage:"Your Check-Ins"}),[u,p]=(0,s.useState)(e.isElementInList),{addConstToList:g,removeConstFromList:f}=(0,b.j8)({overrideRefTag:t}),{executeAddConstToList:T,addConstToListResult:I}=g,{executeRemoveConstFromList:x,removeConstFromListResult:L}=f,E=I?.error||L?.error,P=()=>{u?(x(o,r),p(!1)):(T(o,r),p(!0))};return E?(n(E),null):(0,a.jsxs)(v,{children:[(0,a.jsxs)(S,{onClick:P,onKeyDown:e=>{y.M6.isEnterOrSpaceKey(e)&&P()},role:"button",tabIndex:0,"data-titleinlist":u,children:[u&&(0,a.jsx)(N,{name:"playlist-add-check"}),!u&&(0,a.jsx)(O,{name:"add"}),"CHECK_INS"===e.listClass?m:l]}),(0,a.jsx)(w,{href:i({lsconst:o,refSuffix:""}),"aria-label":c,children:(0,a.jsx)(d.Icon,{name:"chevron-right"})})]})};P.fragments={addConstToListMenuItem:E};let R=`
+    &:focus {
+        ${(0,c.focusOnBaseAlt)()}
+    }
+
+    &:hover {
+        background: rgba(
+            ${(0,c.getColorVarValue)("ipt-on-baseAlt-rgb")},
+            ${(0,c.getColorVarValue)("ipt-baseAlt-hover-opacity")}
+        );
+        background: rgba(
+            ${(0,c.getColorVar)("ipt-on-baseAlt-rgb")},
+            ${(0,c.getColorVar)("ipt-baseAlt-hover-opacity")}
+        );
+    }
+
+    &:active {
+        background: rgba(
+            ${(0,c.getColorVarValue)("ipt-on-baseAlt-rgb")},
+            ${(0,c.getColorVarValue)("ipt-baseAlt-pressed-opacity")}
+        );
+        background: rgba(
+            ${(0,c.getColorVar)("ipt-on-baseAlt-rgb")},
+            ${(0,c.getColorVar)("ipt-baseAlt-pressed-opacity")}
+        );
+    }
+`,v=l.default.div.withConfig({componentId:"sc-1bc1c2bb-0"})(["display:flex;align-items:center;width:100%;"]),S=l.default.div.withConfig({componentId:"sc-1bc1c2bb-1"})([""," flex-grow:1;cursor:pointer;padding:0.75rem 1rem 0.75rem 0.75rem;position:relative;text-overflow:ellipsis;overflow:hidden;word-break:break-all;white-space:nowrap;&::after{position:absolute;content:'';right:0;top:20%;height:60%;width:1px;","}"],R,(0,c.setPropertyToColorVar)("background-color","ipt-baseAlt-border-color")),O=(0,l.default)(d.Icon).withConfig({componentId:"sc-1bc1c2bb-2"})(["margin-right:0.5rem;"]),N=(0,l.default)(O).withConfig({componentId:"sc-1bc1c2bb-3"})(["",""],(0,c.setPropertyToColorVar)("color","ipt-on-baseAlt-accent4-color")),w=l.default.a.withConfig({componentId:"sc-1bc1c2bb-4"})([""," padding:.75rem 1rem;"," flex-shrink:0;"],R,(0,c.setPropertyToColorVar)("color","ipt-on-baseAlt-textSecondary-color")),M={PROMPT_TITLE:{id:"common_add_to_list_buttonText",defaultMessage:"Add to list"},CREATE_LIST:{id:"addConstToListPrompt_label_createList",defaultMessage:"Create new list"},ERROR_TITLE:{id:"error_emptyStates_addConstToList_title",defaultMessage:"There was a problem. Please try again."},VIEW_WATCHLIST:{id:"common_label_viewWatchlist",defaultMessage:"View Watchlist"},SIGNED_OUT_ERROR_TITLE:{id:"error_signedOut_addConstToList_title",defaultMessage:"Sign in to create or view a list."},CLOSE_PROMPT_LABEL:{id:"common_ariaLabel_closePrompt",defaultMessage:"Close Prompt"},NO_LISTS_FOUND:{id:"addConstToListPrompt_no_lists_found",defaultMessage:"No lists found"}},$={LOADER:"actlp-loader",ERROR:"actlp-error",CREATE_LIST:"actlp-creat-list",VIEW_WATCHLIST:"actlp-watchlist",NO_LIST:"actlp-no-list"},A="addConstToListPrompt__panel",k=n()`
+    query ACTLP_Prompt(
+        $count: Int!
+        $constId: ID!
+        $after: ID
+        $listElementType: ListTypeId
+    ) {
+        lists(
+            first: $count
+            filter: {
+                listElementType: $listElementType
+                classTypes: [LIST, CHECK_INS]
+            }
+            after: $after
+        ) {
+            total
+            edges {
+                node {
+                    ...AddConstToListMenuItem
+                    isElementInList(itemElementId: $constId)
+                    listClass {
+                        id
+                    }
+                }
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+    }
+    ${P.fragments.addConstToListMenuItem}
+`,D={hasNextPage:!0,listItems:[],endCursor:null},j=e=>{let t,i;let{isOpen:r,onClose:n,primaryImage:l,primaryText:c,imageType:m}=e,y=l?.caption?.plainText||"",_=(0,g.n)(),b=(0,o.Z)(),{makeRefMarker:E,value:R}=(0,C.L)(),{listCreateLinkBuilder:v,listWatchlistLinkBuilder:S,registrationSignInLinkBuilder:O}=(0,h.WO)(),{pageType:N,pageConst:w}=(0,T.y)(),j=e.constId||w,H=j?.startsWith("tt"),Z=j?.startsWith("nm"),U=(0,f.q)(`${R.replaceAll("_","-")}-addtolist-open`,x.qB.POP_UP,E("addtolist_open")),Y=(0,f.q)(`${R.replaceAll("_","-")}-addtolist-close`,x.qB.POP_UP,E("addtolist_close")),z="poster";H&&(t=u.lZ.Titles),Z&&(t=u.lZ.People,z="avatar");let[G,K]=(0,s.useState)(D),[Q]=(0,I.E)({query:k,requestPolicy:"network-only",variables:{constId:j,count:100,after:G.endCursor,listElementType:t},context:{serverSideCacheable:!1,personalized:!0},pause:!r||!_||!j}),[X,J]=(0,s.useState)(void 0),ee=Q.fetching,et=Q.error||X,ei=Q.data?.lists?.total,ea=N&&j?(0,a.jsx)(d.TextLink,{href:O({refSuffix:"ls_menu",query:{u:`/${N}/${j}/`}}),text:b.formatMessage(M.SIGNED_OUT_ERROR_TITLE)}):null,er=b.formatMessage(M.ERROR_TITLE);(0,s.useEffect)(()=>{r&&!ee&&Q.data?.lists&&G.hasNextPage&&K({listItems:Q.data?.lists?.edges?G.listItems.concat(Q.data.lists.edges):G.listItems,hasNextPage:Q.data?.lists?.pageInfo?.hasNextPage,endCursor:Q.data?.lists?.pageInfo?.endCursor})},[G.hasNextPage,Q.data]),(0,s.useEffect)(()=>{if(r){U();return}K({...D})},[r]);let en=!et&&r&&_&&ei!==G.listItems.length;return(0,a.jsxs)(V,{"data-testid":"styled-list-prompt",isOpen:r,onCloseClicked:()=>{n(),Y()},panelClassName:A,header:(0,a.jsx)(F,{type:z,subtitle:c,reverseTitleOrder:!0,title:b.formatMessage(M.PROMPT_TITLE),ariaLabel:y,imageModel:(0,L.Gs)(l,y),imageType:m}),closePromptLabel:b.formatMessage(M.CLOSE_PROMPT_LABEL),children:[_?(0,a.jsxs)(d.MenuList,{children:[H&&(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(d.MenuListItem,{className:$.VIEW_WATCHLIST,href:S({refSuffix:"wl"}),postIconName:"chevron-right",children:(0,a.jsx)(p.q,{...M.VIEW_WATCHLIST})}),(0,a.jsx)(d.MenuListDivider,{})]}),(0,a.jsx)(d.MenuListItem,{className:$.CREATE_LIST,href:v({refSuffix:"new"}),postIconName:"chevron-right",children:(0,a.jsx)(p.q,{...M.CREATE_LIST})}),(0,a.jsx)(d.MenuListDivider,{}),et&&(0,a.jsx)(q,{className:$.ERROR,title:(i=X,i?.graphQLErrors[0]?.extensions?.code==="FORBIDDEN")?ea:er}),!en&&0===G.listItems.length&&(0,a.jsx)(q,{className:$.NO_LIST,title:(0,a.jsx)(W,{children:(0,a.jsx)(p.q,{...M.NO_LISTS_FOUND})})}),!et&&j&&G.listItems.map(e=>(0,a.jsx)(P,{listData:e.node,listClass:e.node?.listClass?.id,isElementInList:e.node.isElementInList||!1,constId:j,onError:J},e.node.id))]}):(0,a.jsx)(q,{className:$.ERROR,title:ea}),en&&(0,a.jsx)(B,{"data-testid":$.LOADER,children:(0,a.jsx)(d.Loader,{})})]})},V=(0,l.default)(d.Prompt).withConfig({componentId:"sc-de3b0e88-0"})([".","{padding:0;",";min-height:18rem;}"],A,(0,c.setPropertyToShapeVar)("border-radius","ipt-cornerRadius")),F=(0,l.default)(d.PromptHeader).withConfig({componentId:"sc-de3b0e88-1"})([""," ",""],(0,c.setPropertyToShapeVar)("border-top-left-radius","ipt-cornerRadius"),(0,c.setPropertyToShapeVar)("border-top-right-radius","ipt-cornerRadius")),q=(0,l.default)(m.G).withConfig({componentId:"sc-de3b0e88-2"})([""," background:initial;min-height:7rem;padding:3rem;"],(0,c.setTypographyType)("body")),B=l.default.div.withConfig({componentId:"sc-de3b0e88-3"})(["display:flex;min-height:7rem;justify-content:center;padding:3rem;"]),W=l.default.span.withConfig({componentId:"sc-de3b0e88-4"})(["",";"],(0,c.setPropertyToColorVar)("color","ipt-on-baseAlt-textSecondary-color"));var H=e=>(0,a.jsx)(C.x,{value:"ls",children:(0,a.jsx)(j,{...e})})},22845:function(e,t,i){i.d(t,{Et:function(){return f}});var a=i(52322),r=i(30382),n=i.n(r);i(2784);var s=i(19596),o=i(45103),l=i(91842),d=i(87961),c=i(88926),m=i(68624);let u={PRINCIPAL_CONTAINER:"p_ct",DIRECTOR:"p_ct_dr",CREATOR:"p_ct_cr",CAST:"p_ct_cst"},p=n()`
+    fragment TitleSummaryPromptCreditCategories on Title {
+        principalCast: principalCredits(filter: { categories: ["cast"] }) {
+            ...TitleSummaryPromptCredits
+        }
+        principalCreators: principalCredits(
+            filter: { categories: ["creator"] }
+        ) {
+            ...TitleSummaryPromptCredits
+        }
+        principalDirectors: principalCredits(
+            filter: { categories: ["director"] }
+        ) {
+            ...TitleSummaryPromptCredits
+        }
+    }
+
+    fragment TitleSummaryPromptCredits on PrincipalCreditsForCategory {
+        category {
+            text
+        }
+        credits(limit: 3) {
+            name {
+                id
+                nameText {
+                    text
+                }
+            }
+        }
+    }
+`,g=n()`
+    query Title_Summary_Prompt_From_Base(
+        $id: ID!
+        $providerId: String
+        $location: WatchOptionsLocation
+    ) {
+        title(id: $id) {
+            ...TitleSummaryPromptCreditCategories
+            ...baseTitlePromptQuery
+        }
+    }
+    ${m.Gg}
+    ${p}
+`,f=e=>{let{title:t,refMarker:i,onClose:r,isOpen:n}=e;return(0,a.jsx)(m.Pz,{isOpen:n,onClose:r,title:t,refMarker:i,queryOverride:{query:g},contentOverride:e=>{let t=e?.title,r=t?.principalCreators&&t.principalCreators[0],n=t?.principalDirectors&&t.principalDirectors[0],s=t?.principalCast&&t.principalCast[0];if(t&&(r||n||s))return(0,a.jsxs)(x,{"data-testid":u.PRINCIPAL_CONTAINER,children:[r&&(0,a.jsx)(T,{testId:u.CREATOR,creditCategory:r,refTag:(0,c.z)("tt_pcr",i)}),n&&(0,a.jsx)(T,{testId:u.DIRECTOR,creditCategory:n,refTag:(0,c.z)("tt_pd",i)}),s&&(0,a.jsx)(T,{testId:u.CAST,creditCategory:s,refTag:(0,c.z)("tt_pca",i)})]})}})},T=e=>{let{creditCategory:t,refTag:i,testId:r}=e,n=t.credits,s=t.category?.text;return n&&s&&n.length>0?(0,a.jsxs)(C,{"data-testid":r,children:[(0,a.jsxs)(h,{children:[" ",s," "]}),(0,a.jsx)(o.InlineList,{showDividers:!0,inline:!0,children:n.map(e=>{if(e&&e.name.id&&e.name.nameText?.text)return(0,a.jsx)(o.InlineListItem,{children:(0,a.jsx)(I,{href:`/name/${e.name.id}/${i?`?ref_=${i}`:""}`,text:e.name.nameText.text},`name-link-${e.name.id}`)},e.name.id)})})]},s):null},I=(0,s.default)(o.TextLink).withConfig({componentId:"sc-1582ce06-0"})(["font-size:",";",";display:inline;"],(0,l.setTypographyType)("bodySmall"),(0,l.setPropertyToColorVar)("color","ipt-on-baseAlt-textSecondary-color")),h=s.default.span.withConfig({componentId:"sc-1582ce06-1"})(["font-size:",";",";margin-right:",";"],(0,l.setTypographyType)("subtitle2"),(0,l.setPropertyToColorVar)("color","ipt-on-baseAlt-textSecondary-color"),l.spacing.xs),C=s.default.div.withConfig({componentId:"sc-1582ce06-2"})(["",";margin-bottom:",";"],(0,d.S)(1),l.spacing.xs),x=s.default.div.withConfig({componentId:"sc-1582ce06-3"})(["margin:",";","{margin-left:0;margin-right:0;}"],l.spacing.s,l.mediaQueries.breakpoints.above.m)},73420:function(e,t,i){var a=i(2784),r=i(79855),n=i(58609);t.ZP=e=>{let{seconds:t,format:i,unitDisplay:s,round:o=!0}=e,l=(0,r.Z)(),d=i;i&&"{hours} {minutes} {seconds}"!==i||(d=l.messages["formatted-duration-longFormatting"]||"{hours} {minutes} {seconds}"),"{minutes}:{seconds}"===i&&(d=l.messages["formatted-duration-timerFormatting"]||"{hours}:{minutes}:{seconds}");let c=new n.Z(l.locale,{format:d,formatUnits:{[n.Z.units.DAY]:l.messages["formatted-duration-daysUnit"]||"{value, plural, one {day} other {days}}",[n.Z.units.HOUR]:l.messages["formatted-duration-hoursUnit"]||"{value, plural, one {hour} other {hours}}",[n.Z.units.MINUTE]:l.messages["formatted-duration-minutesUnit"]||"{value, plural, one {minute} other {minutes}}",[n.Z.units.SECOND]:l.messages["formatted-duration-secondsUnit"]||"{value, plural, one {second} other {seconds}}"},formatDuration:l.messages["formatted-duration-duration"]||"{value} {unit}",round:o,style:s}).formatToParts(t);return a.createElement(a.Fragment,{},c.map(e=>"literal"===e.type||"unit"===e.type?e.value:a.createElement(a.Fragment,{key:e.type},e.value)))}},14846:function(e,t,i){i.d(t,{j8:function(){return g}});var a=i(30382),r=i.n(a),n=i(74613),s=i(8768),o=i(19369),l=i(36565),d=i(54786),c=i(85767),m=i(27261),u=i(98046),p=i(29609);let g=e=>{let[t,i]=(0,p.Z)(T),[a,r]=(0,p.Z)(I),n=(0,c.B)().context,s=!!n.sidecar?.localizationResponse.isOriginalTitlePreferenceSet;return{addConstToList:{executeAddConstToList:(t,a)=>{let r=e.overrideRefTag??`${n.refTagPrefix}_add_items`;return(0,m.K8)(r,f(n,a),e.overrideAddPageAction??"list-item-add",u.qB.ACTION_ONLY),i({listId:t,constId:a,includeListItemMetadata:!!e.includeListItemMetadata,refTagQueryParam:r,originalTitleText:s})},addConstToListResult:t},removeConstFromList:{executeRemoveConstFromList:(t,i)=>((0,m.K8)(e.overrideRefTag??`${n.refTagPrefix}_delete_items`,f(n,i),e.overrideRemovePageAction??"list-item-delete",u.qB.ACTION_ONLY),r({listId:t,constId:i})),removeConstFromListResult:a}}},f=(e,t)=>({type:e.pageType,subType:e.subPageType,id:t}),T=r()`
+    mutation AddConstToList(
+        $listId: ID!
+        $constId: ID!
+        $includeListItemMetadata: Boolean!
+        $refTagQueryParam: String
+        $originalTitleText: Boolean
+    ) {
+        addItemToList(
+            input: { listId: $listId, item: { itemElementId: $constId } }
+        ) {
+            listId
+            modifiedItem {
+                ...EditListItemMetadata
+                listItem @include(if: $includeListItemMetadata) {
+                    ... on Title {
+                        ...TitleListItemMetadata
+                    }
+                    ... on Name {
+                        ...NameListItemMetadata
+                    }
+                    ... on Image {
+                        ...ImageListItemMetadata
+                    }
+                    ... on Video {
+                        ...VideoListItemMetadata
+                    }
+                }
+            }
+        }
+    }
+
+    ${o.rc}
+    ${l.Zz}
+    ${s.E}
+    ${n.w}
+    ${d.X}
+`,I=r()`
+    mutation RemoveConstFromList($listId: ID!, $constId: ID!) {
+        removeElementFromList(
+            input: { listId: $listId, itemElementId: $constId }
+        ) {
+            listId
+        }
+    }
+`}}]);

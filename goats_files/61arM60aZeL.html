@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <!-- APE SafeFrame v1.50.d327519 -- 2022-02-22T20:30:21+0000 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="Cache-Control" content="public">
+        <meta name="ROBOTS" content="NOINDEX">
+        <meta name="ROBOTS" content="NOFOLLOW">
+        <meta name="ROBOTS" content="NOARCHIVE">
+        <meta name="ROBOTS" content="NOSNIPPET">
+        <meta name="ROBOTS" content="NOODP ">
+        <title></title>
+        <style type="text/css">
+            body {
+                margin: 0px;
+                padding: 0px;
+                background-color: transparent;
+            }
+        </style>
+    </head>
+    <body marginwidth="0" marginheight="0">
+        <script>
+            !function i(o, s, c) {
+                function d(t, e) {
+                    if (!s[t]) {
+                        if (!o[t]) {
+                            var n = "function" == typeof require && require;
+                            if (!e && n)
+                                return n(t, !0);
+                            if (l)
+                                return l(t, !0);
+                            var a = new Error("Cannot find module '" + t + "'");
+                            throw a.code = "MODULE_NOT_FOUND",
+                            a
+                        }
+                        var r = s[t] = {
+                            exports: {}
+                        };
+                        o[t][0].call(r.exports, function(e) {
+                            return d(o[t][1][e] || e)
+                        }, r, r.exports, i, o, s, c)
+                    }
+                    return s[t].exports
+                }
+                for (var l = "function" == typeof require && require, e = 0; e < c.length; e++)
+                    d(c[e]);
+                return d
+            }({
+                1: [function(e, t, n) {
+                    var a = e("./lib/replace")
+                      , r = e("./lib/getSlotPlaceholder").getSlotPlaceholder
+                      , i = e("./lib/getSlotPlaceholder").getClickTrackingParamWithSlotId;
+                    t.exports.replace = a,
+                    t.exports.getSlotPlaceholder = r,
+                    t.exports.getClickTrackingParamWithSlotId = i
+                }
+                , {
+                    "./lib/getSlotPlaceholder": 2,
+                    "./lib/replace": 4
+                }],
+                2: [function(e, t, n) {
+                    var a = e("./globals")
+                      , r = "data-val";
+                    function i(e) {
+                        if ("string" != typeof e || "" === e)
+                            return "";
+                        var t = a.getDocument().getElementById("ape_" + e + "_placement_ClickTracking");
+                        if (!(t && t.hasAttribute && "function" == typeof t.hasAttribute && t.hasAttribute(r) && t.getAttribute && "function" == typeof t.getAttribute))
+                            return "";
+                        var n = t.getAttribute(r);
+                        return "string" != typeof n ? "" : n
+                    }
+                    t.exports.getSlotPlaceholder = function(e, t, n) {
+                        return i([e, n, t].join("_"))
+                    }
+                    ,
+                    t.exports.getClickTrackingParamWithSlotId = i
+                }
+                , {
+                    "./globals": 3
+                }],
+                3: [function(e, t, n) {
+                    t.exports.getDocument = function() {
+                        return document
+                    }
+                }
+                , {}],
+                4: [function(e, t, n) {
+                    var u = new RegExp(/((&#[0-9]{2};)|(&#[0-9]{3};)|(&#[0-9]{4};)|(&[a-z]{2};)|(&[a-z]{3};)|(&[a-z]{4};)|(&[a-z]{5};)|(&[a-z]{6};)|(&[a-z]{7};)|(%[a-fA-F0-9]{2})|(\W))pd_rd_plhdr(=|%3D)t((&#[0-9]{2};)|(&#[0-9]{3};)|(&#[0-9]{4};)|(&[a-z]{2};)|(&[a-z]{3};)|(&[a-z]{4};)|(&[a-z]{5};)|(&[a-z]{6};)|(&[a-z]{7};)|(%[a-fA-F0-9]{2})|(\W))/)
+                      , p = "$1"
+                      , f = "$14";
+                    t.exports = function(e, t) {
+                        var n = t
+                          , a = e;
+                        if ("string" != typeof e || "&pd_rd_plhdr=t" === e || "" === e.trim())
+                            return n;
+                        (a = a.replace(/&amp;/g, "&")).startsWith("&") && (a = a.replace(/^&+/, "")),
+                        a.endsWith("&") && (a = a.replace(/&+$/, ""));
+                        try {
+                            var r, i = 0;
+                            do {
+                                if (i++,
+                                !(r = n.match(u)))
+                                    break;
+                                var o = r[1]
+                                  , s = r[14]
+                                  , c = r[13]
+                                  , d = o.startsWith("&") && o.endsWith(";") || s.startsWith("&") && s.endsWith(";")
+                                  , l = o.startsWith("%") && s.startsWith("%") && "%3D" === c;
+                                n = d ? n.replace(u, p + a.replace(/&/g, "&amp;") + f) : l ? n.replace(u, p + encodeURIComponent(a) + f) : n.replace(u, p + a + f)
+                            } while (r && i < 10)
+                        } catch (e) {
+                            return t
+                        }
+                        return n
+                    }
+                }
+                , {}],
+                5: [function(e, t, n) {
+                    var a = e("./lib/addJSONQueryParamToURL").addJSONQueryParamToURL;
+                    t.exports.addJSONQueryParamToURL = a
+                }
+                , {
+                    "./lib/addJSONQueryParamToURL": 6
+                }],
+                6: [function(e, t, n) {
+                    var s = e("./globals")
+                      , p = "{}"
+                      , f = "?"
+                      , m = "&"
+                      , E = "=";
+                    function g(e, t) {
+                        var n = {};
+                        for (var a in e)
+                            n[a] = e[a];
+                        for (var r in t)
+                            n[r] = t[r];
+                        return n
+                    }
+                    t.exports.addJSONQueryParamToURL = function(t, n, a) {
+                        if ("string" != typeof t || "" === t)
+                            throw new Error("Invalid url input to addJSONQueryParamToURL: " + JSON.stringify({
+                                url: t
+                            }));
+                        if ("string" != typeof n || "" === n)
+                            throw new Error("Invalid queryParamKey input to addJSONQueryParamToURL: " + JSON.stringify({
+                                queryParamKey: n
+                            }));
+                        if ("object" != typeof a)
+                            throw new Error("Invalid queryParamValueObject input to addJSONQueryParamToURL: " + JSON.stringify({
+                                queryParamValueObject: a
+                            }));
+                        try {
+                            var e = new (s.getURLInterface())(t)
+                              , r = e.searchParams.get(n) ? e.searchParams.get(n) : p
+                              , i = JSON.parse(r);
+                            if ("object" != typeof i)
+                                throw new Error("Existing query param value was not an object: " + JSON.stringify({
+                                    existingJSONObject: i
+                                }));
+                            var o = g(i, a);
+                            return e.searchParams.set(n, JSON.stringify(o)),
+                            e.toString()
+                        } catch (e) {
+                            return function(e, t, n) {
+                                var a, r = e.indexOf(f), i = {};
+                                if (0 < r) {
+                                    a = e.substring(0, r);
+                                    var o = decodeURIComponent(e.substring(r + 1));
+                                    o.split(m).forEach(function(e) {
+                                        if (e) {
+                                            var t = e.split(E);
+                                            i[t[0]] = t[1]
+                                        }
+                                    });
+                                    var s = i[t] ? i[t] : p
+                                      , c = JSON.parse(s);
+                                    if ("object" != typeof c)
+                                        throw new Error("Existing query param value was not an object: " + JSON.stringify({
+                                            existingJSONObject: c
+                                        }));
+                                    var d = g(c, n);
+                                    i[t] = JSON.stringify(d)
+                                } else
+                                    a = e,
+                                    i[t] = JSON.stringify(n);
+                                var l = [];
+                                for (var u in i)
+                                    l.push(encodeURIComponent(u) + E + encodeURIComponent(i[u]));
+                                return a + f + l.join(m)
+                            }(t, n, a)
+                        }
+                    }
+                }
+                , {
+                    "./globals": 7
+                }],
+                7: [function(e, t, n) {
+                    t.exports.getURLInterface = function() {
+                        return URL
+                    }
+                }
+                , {}],
+                8: [function(e, t, n) {
+                    var a = e("../components/sfCounters")
+                      , r = e("./messenger/sfMsgHandler")
+                      , i = r.messenger
+                      , o = a.IMPRESSION_COUNTERS.LEGACY_IMPRESSION_COUNTER
+                      , s = !1;
+                    t.exports.fireImpression = function(e) {
+                        i.fireImpressionPixel(e.measurementMethod, e.isNoInventory)
+                    }
+                    ,
+                    t.exports.fireMetricsForLegacyImpression = function(e) {
+                        var t = i.options.adCreativeMetaData.adProgramId ? i.options.adCreativeMetaData.adProgramId : "unknown"
+                          , n = r.prepareCreativeTemplateNameForTagging(i.options.adCreativeMetaData.adCreativeTemplateName);
+                        s || (s = !0,
+                        i.client.countMetric(o, 1, !1),
+                        i.client.countMetric(o, 1, !0),
+                        i.client.countMetric(o + ":program:" + t, 1, !0),
+                        i.client.countMetric(o + ":template:" + n, 1, !0))
+                    }
+                }
+                , {
+                    "../components/sfCounters": 15,
+                    "./messenger/sfMsgHandler": 11
+                }],
+                9: [function(e, t, n) {
+                    var a = e("../../components/util")
+                      , l = e("../../components/sfCounters").BTR_COUNTERS
+                      , u = e("./measurementMethods").MEASUREMENT_METHODS
+                      , p = ["ape_impression", "ape_ni_impression", "ape_measurability", "ape_viewability_amzn", "ape_viewability_iab", "ape_viewability_groupm", "ape_ni_viewability_amzn", "ape_ni_viewability_iab", "ape_ni_viewability_groupm"];
+                    t.exports.evaluateImpressionMeasurementMethod = function(c, d) {
+                        var e = function() {
+                            for (var e = document.getElementsByTagName("img"), t = [], n = 0; n < e.length; n++)
+                                -1 === p.indexOf(e[n].id) && t.push(e[n]);
+                            var a = 0
+                              , r = 0
+                              , i = 0
+                              , o = u.COUNT_ON_DOWNLOAD_CLIENT;
+                            for (n = 0; n < t.length; n++) {
+                                var s = t[n];
+                                s.complete && 0 < s.naturalHeight && 0 < s.naturalWidth ? 1 === s.naturalHeight && 1 === s.naturalWidth ? r++ : (1 < s.naturalHeight || 1 < s.naturalWidth) && i++ : a++
+                            }
+                            0 === t.length ? (c.countMetric(l.NO_IMAGES, 1, !1),
+                            c.countMetric(l.NO_IMAGES, 1, !0)) : 0 < a ? (c.countMetric(l.ERROR, 1, !1),
+                            c.countMetric(l.ERROR, 1, !0)) : 0 === i && 0 < r ? (c.countMetric(l.PIXELS, 1, !1),
+                            c.countMetric(l.PIXELS, 1, !0)) : 0 < i && (c.countMetric(l.LOADED, 1, !1),
+                            c.countMetric(l.LOADED, 1, !0),
+                            o = u.BEGIN_TO_RENDER_CLIENT),
+                            d(o)
+                        };
+                        "complete" === document.readyState ? e() : a.addWindowListener("load", function() {
+                            e()
+                        })
+                    }
+                }
+                , {
+                    "../../components/sfCounters": 15,
+                    "../../components/util": 17,
+                    "./measurementMethods": 10
+                }],
+                10: [function(e, t, n) {
+                    t.exports.MEASUREMENT_METHODS = {
+                        BEGIN_TO_RENDER_CLIENT: "btr_client",
+                        COUNT_ON_DOWNLOAD_CLIENT: "cod_client"
+                    }
+                }
+                , {}],
+                11: [function(i, e, t) {
+                    function r(e, t) {
+                        "undefined" != typeof console && console.error && console.error(e, t)
+                    }
+                    function S(e) {
+                        return e ? e.toLowerCase().replace(/[^0-9a-z]/g, "") : "unknown"
+                    }
+                    e.exports.messenger = new function(e, t, n) {
+                        var g = this
+                          , d = i("@amzn/apejs-url-query-params")
+                          , v = i("../../components/sfCounters")
+                          , R = i("../../components/sfEvents")
+                          , l = i("./measurementMethods").MEASUREMENT_METHODS
+                          , u = v.AD_LOAD_COUNTERS
+                          , p = v.IMPRESSION_COUNTERS.GLOBAL_IMPRESSION_FIRED_COUNTER
+                          , f = v.BTR_COUNTERS
+                          , m = R.AD_LOAD_EVENTS
+                          , E = i("../../components/pixel")
+                          , T = {};
+                        this.client = e || {},
+                        this.options = t || {},
+                        this.msgListeners = n || {},
+                        this.tagRenderFlow = function() {
+                            if (g.options && g.options.adCreativeMetaData && g.options.adCreativeMetaData.adProgramId && g.options.adCreativeMetaData.adCreativeId) {
+                                var e = S(g.options.adCreativeMetaData.adCreativeTemplateName);
+                                g.client.addCsmTag("adrender"),
+                                g.client.addCsmTag("adrender:safeframe"),
+                                g.client.addCsmTag("adrender", "creativeid:" + g.options.adCreativeMetaData.adCreativeId),
+                                g.client.addCsmTag("adrender", "programid:" + g.options.adCreativeMetaData.adProgramId),
+                                g.client.addCsmTag("adrender", "creativetemplatename:" + e),
+                                g.sendMessage("addCsaEntity", {
+                                    adrender: "true",
+                                    creativeId: g.options.adCreativeMetaData.adCreativeId.toString(),
+                                    adProgramId: g.options.adCreativeMetaData.adProgramId.toString(),
+                                    creativeTemplateName: e,
+                                    isLightAds: "false"
+                                }),
+                                void 0 !== g.options.isCardsFlow && g.sendMessage("addCsaEntity", {
+                                    isCardsFlow: g.options.isCardsFlow.toString()
+                                })
+                            } else
+                                g.client.addCsmTag("noadrender"),
+                                g.sendMessage("addCsaEntity", {
+                                    adrender: "false"
+                                })
+                        }
+                        ,
+                        this.produceClientAPIs = function(e) {
+                            function s(e, t, n, a) {
+                                return function() {
+                                    try {
+                                        return n && (g.sendMessage("logAPIInvocation", {
+                                            apiName: t,
+                                            apiParams: arguments
+                                        }),
+                                        g.sendMessage("logCsaEvent", {
+                                            metricName: R.MESSENGER_EVENTS.API + t
+                                        })),
+                                        e.apply(this, arguments)
+                                    } catch (e) {
+                                        return "function" == typeof a && a("API Call Failed", e),
+                                        null
+                                    }
+                                }
+                            }
+                            g.client = function e(t, n) {
+                                var a = {};
+                                for (var r in t)
+                                    if (t.hasOwnProperty(r)) {
+                                        var i = t[r]
+                                          , o = n ? n + "." + r : r;
+                                        "function" == typeof i ? a[r] = new s(i,o) : i.hasOwnProperty("apiFunc") ? a[r] = new s(i.apiFunc,o,i.logInvocation) : "object" == typeof i && (a[r] = e(i, o))
+                                    }
+                                return a
+                            }(e, "")
+                        }
+                        ,
+                        this.sendMessage = function(e, t) {
+                            if (g.options !== {}) {
+                                var n = {
+                                    command: e,
+                                    arid: g.options.arid,
+                                    data: t || {}
+                                };
+                                try {
+                                    parent.postMessage(JSON.stringify(n), g.options.hostDomain)
+                                } catch (e) {
+                                    r("Post Message unsupported ", e)
+                                }
+                            }
+                        }
+                        ,
+                        this.receiveMessage = function(t) {
+                            if (g.options !== {} && g.client !== {}) {
+                                var e;
+                                try {
+                                    if (e = JSON.parse(t.data),
+                                    t.origin !== g.options.hostDomain || "object" != typeof e.data)
+                                        throw "Invalid Message"
+                                } catch (e) {
+                                    var n = "Received Error: " + t.data;
+                                    return void g.client.logError(n, e)
+                                }
+                                try {
+                                    g.options.debug && "undefined" != typeof console && console.log("SF Message received ", t);
+                                    for (var a = e.command ? e.command.split(".") : [], r = g.client[a[0]], i = 1; i < a.length && r; i++)
+                                        r = r[a[i]];
+                                    if ("customMessage" === e.command) {
+                                        var o = e.data.key
+                                          , s = e.data.data;
+                                        if ("function" == typeof g.msgListeners[o])
+                                            try {
+                                                g.msgListeners[o](s)
+                                            } catch (e) {
+                                                g.client.logError("Custom Message Listener Error", e)
+                                            }
+                                    } else
+                                        r && r(e.data)
+                                } catch (e) {
+                                    return void g.client.logError("Error with " + JSON.parse(t.data).command, e)
+                                }
+                            }
+                        }
+                        ;
+                        var I = function(e, t, n) {
+                            return e + t + JSON.stringify(n)
+                        }
+                          , M = function(e) {
+                            return "Image" === e || "Image - mobile O&O" === e
+                        }
+                          , a = !1;
+                        this.fireImageLoaded = function(e) {
+                            if (!a && M(e)) {
+                                var t = document.getElementsByClassName("ad-background-image");
+                                if ((t = t && t[0]) && "img" === t.tagName.toLowerCase())
+                                    if (t.complete)
+                                        g.client.countMetric("imageLoaded", 1, !0),
+                                        g.client.countMetric("imageLoaded:adid:" + g.options.adCreativeMetaData.adId, 1, !0),
+                                        a = !0;
+                                    else {
+                                        var n = t.onload;
+                                        t.onload = function() {
+                                            n && n(),
+                                            g.client.countMetric("imageLoaded", 1, !0),
+                                            g.client.countMetric("imageLoaded:adid:" + g.options.adCreativeMetaData.adId, 1, !0),
+                                            a = !0
+                                        }
+                                    }
+                            }
+                        }
+                        ,
+                        this.fireImpressionPixel = function(e, t) {
+                            if (g.options !== {} && g.client !== {})
+                                if (t) {
+                                    var n = I(g.options.aaxInstrPixelUrl, "nii/", {
+                                        ni: !0
+                                    });
+                                    E.firePixel(g.client, n, "ape_ni_impression", u.UNSERVED_IMP, m.UNSERVED_IMP)
+                                } else {
+                                    var a, r = g.options.adCreativeMetaData.adProgramId ? g.options.adCreativeMetaData.adProgramId : "unknown", i = g.options.adCreativeMetaData.adCreativeTemplateName, o = S(i), s = g.options.adCreativeMetaData.adId, c = !1;
+                                    try {
+                                        "string" == typeof e && "" !== e ? (a = d.addJSONQueryParamToURL(g.options.aaxImpPixelUrl, "pj", {
+                                            measurementMethod: e
+                                        }),
+                                        c = e === l.BEGIN_TO_RENDER_CLIENT) : a = g.options.aaxImpPixelUrl
+                                    } catch (e) {
+                                        g.client.logError("Unable to add pj to impression URL", e),
+                                        a = g.options.aaxImpPixelUrl
+                                    }
+                                    E.firePixel(g.client, a, "ape_impression", u.IMP, m.IMP) && (g.client.countMetric(p, 1, !0),
+                                    g.client.countMetric(p + ":program:" + r, 1, !0),
+                                    g.client.countMetric(p + ":template:" + o, 1, !0),
+                                    c && (g.client.countMetric(f.IMPRESSION, 1, !1),
+                                    g.client.countMetric(f.IMPRESSION, 1, !0),
+                                    g.client.countMetric(f.IMPRESSION + ":program:" + r, 1, !0),
+                                    g.client.countMetric(f.IMPRESSION + ":template:" + o, 1, !0)),
+                                    M(i) && g.client.countMetric(p + ":adid:" + s, 1, !0))
+                                }
+                        }
+                        ,
+                        this.fireMeasurabilityPixel = function(e) {
+                            // if (g.options !== {} && g.client !== {} && g.options.aaxInstrPixelUrl) {
+                            //     var t = "ape_measurability";
+                            //     if (!T[t]) {
+                            //         var n = {};
+                            //         n.atf = e.atf;
+                            //         var a = I(g.options.aaxInstrPixelUrl, "atf/", n);
+                            //         E.firePixel(g.client, a, t, u.MEASURABILITY, m.MEASURABILITY),
+                            //         T[t] = !0
+                            //     }
+                            // }
+                        }
+                        ,
+                        this.fireViewablePixels = function(o, s, e, c) {
+                            if (g.options !== {} && g.client !== {} && g.options.aaxInstrPixelUrl && e) {
+                                for (var t = function(e) {
+                                    var t, n, a = e.p, r = e.t, i = e.def;
+                                    !T[i].viewed && (n = a,
+                                    (t = o) && (n <= 100 * t && 0 !== n || n < 100 * t && 0 === n)) ? T[i].timeout || (T[i].timeout = setTimeout(function() {
+                                        T[i].viewed = !0,
+                                        function(e) {
+                                            s.v = e,
+                                            s.ptv = void 0 !== g.options.aPageStart ? (Date.now() - g.options.aPageStart) / 1e3 : 0,
+                                            s.ttv = void 0 !== g.options.adStartTime ? (Date.now() - g.options.adStartTime) / 1e3 : 0,
+                                            c && (s.niv = !0);
+                                            var t, n = {};
+                                            n.viewableInfo = s,
+                                            n.aaxInstrPixelUrl = g.options.aaxInstrPixelUrl,
+                                            n.viewablePercentage = o,
+                                            c ? (t = I(g.options.aaxInstrPixelUrl, "niv/", s),
+                                            E.firePixel(g.client, t, "ape_ni_viewability_" + e.def, u.UNSERVED_VIEWABILITY, m.UNSERVED_VIEWABILITY, e.def, n)) : (t = I(g.options.aaxInstrPixelUrl, "v/", s),
+                                            E.firePixel(g.client, t, "ape_viewability_" + e.def, u.VIEWABILITY, m.VIEWABILITY, e.def, n))
+                                        }(e)
+                                    }, 1e3 * r)) : T[i].timeout && (clearTimeout(T[i].timeout),
+                                    T[i].timeout = null)
+                                }, n = 0; n < e.length; n++) {
+                                    var a = e[n].def;
+                                    a && (T[a] = T[a] || {},
+                                    T[a].viewed = void 0 !== T[a].viewed && T[a].viewed,
+                                    T[a].timeout = void 0 === T[a].timeout ? null : T[a].timeout)
+                                }
+                                for (n = 0; n < e.length; n++)
+                                    t(e[n])
+                            }
+                        }
+                        ,
+                        this.handleNoAdContent = function() {
+                            g.options.isNoInventory = !0,
+                            g.tagRenderFlow(),
+                            g.sendMessage("startPixelTracking", {
+                                isNoInventory: g.options.isNoInventory
+                            })
+                        }
+                        ;
+                        var _ = function(e, t, n, a, r, i) {
+                            window[n] = t,
+                            window[r] = a,
+                            i(["<scr", "ipt type='text/javascript', src='", e, "', onerror='", r + "()", "'></scr", "ipt>"].join(""))
+                        };
+                        this.createXspRequest = function(e, n, a, t, r) {
+                            var i, o, s = v.AD_FETCH_COUNTERS, c = R.AD_FETCH_EVENTS, d = g.client.handleFallbackBehavior, l = g.client.countMetric, u = g.client.logCsaEvent, p = g.client.logError, f = g.client.sendAdBarTrace;
+                            l(s.REQUEST_START, 1),
+                            u(c.REQUEST_START);
+                            try {
+                                var m = "aax_xsp_render_ad"
+                                  , E = (i = m,
+                                -1 === (o = e.replace(/getAd/, "getAdj")).indexOf("?") ? o + "?callback=" + i : o + "&callback=" + i);
+                                f("aaxCall", {
+                                    jsonpUrl: E,
+                                    XSPCallSetupComplete: !0
+                                }),
+                                _(E, function(e) {
+                                    var t = {
+                                        callBackReceived: !0
+                                    };
+                                    if (t.errFallback = d.name,
+                                    e && 0 !== Object.keys(e).length) {
+                                        switch (t.adContent = e,
+                                        t.status = e.status,
+                                        e.status) {
+                                        case "punt":
+                                            l(s.PUNT_RETURNED, 1),
+                                            u(c.PUNT_RETURNED),
+                                            n.aaxInstrPixelUrl = e.instrPixelURL,
+                                            a(),
+                                            t.aaxReturnedPunt = !0,
+                                            f("aaxCall", t);
+                                            break;
+                                        case "error":
+                                            l(s.ERROR_RETURNED, 1),
+                                            u(c.ERROR_RETURNED),
+                                            d(),
+                                            t.aaxReturnedError = !0,
+                                            f("aaxCall", t);
+                                            break;
+                                        default:
+                                            try {
+                                                n.aaxImpPixelUrl = e.impPixelURL,
+                                                n.aaxInstrPixelUrl = e.instrPixelURL,
+                                                n.htmlContent = e.creative,
+                                                n.measurementHtml = e.aaxMeasurementTrackers && e.aaxMeasurementTrackers.html,
+                                                n && n.adFeedbackInfo && (n.adFeedbackInfo.adProgramId = e.programId),
+                                                n && n.adCreativeMetaData && (n.adCreativeMetaData.adProgramId = e.programId,
+                                                n.adCreativeMetaData.adImpressionId = e.impPixelURL,
+                                                n.adCreativeMetaData.adCreativeId = e.creativeId,
+                                                n.adCreativeMetaData.adCreativeTemplateName = e.creativeTemplateName,
+                                                n.adCreativeMetaData.adId = e.adId),
+                                                t.aaxReturnedContent = !0,
+                                                f("aaxCall", t),
+                                                r(n.htmlContent, n.measurementHtml),
+                                                l(s.RENDERED_AD, 1),
+                                                u(c.RENDERED_AD)
+                                            } catch (e) {
+                                                d(),
+                                                l(s.RENDER_ERROR, 1),
+                                                u(c.RENDER_ERROR),
+                                                t.error = "renderError",
+                                                f("aaxCall", t)
+                                            }
+                                        }
+                                        window.adReporterConfig && g.sendMessage("saveAdDetailsForAdReporter", n)
+                                    } else
+                                        l(s.EMPTY_RESPONSE, 1),
+                                        u(c.EMPTY_RESPONSE),
+                                        d(),
+                                        t.error = "emptyAAXResponse",
+                                        f("aaxCall", t)
+                                }, m, function() {
+                                    l(s.HTTP_ERROR, 1),
+                                    u(c.HTTP_ERROR),
+                                    p("Failed to Fetch Ad From AAX."),
+                                    f("aaxCall", {
+                                        error: "httpError"
+                                    }),
+                                    d()
+                                }, "fetch_error_handler", t)
+                            } catch (e) {
+                                l(s.EXCEPTION, 1),
+                                u(c.EXCEPTION),
+                                p("Failed to create JSONP call."),
+                                f("aaxCall", {
+                                    error: "failedToCreateJSONP"
+                                }),
+                                d(),
+                                f("aaxCall", {
+                                    JSONPCreationException: {
+                                        exception: e
+                                    }
+                                })
+                            }
+                        }
+                        ,
+                        this.createXGetAdRequest = function(e, t, n, a) {
+                            _(e, function(e) {
+                                e && void 0 !== e.html && e.html ? a(e.html) : t()
+                            }, "aax_render_ad", t, "fallback", n)
+                        }
+                    }
+                    ,
+                    e.exports.localErrorLog = r,
+                    e.exports.isSecure = function(e) {
+                        return /^https/.test(e)
+                    }
+                    ,
+                    e.exports.replaceWithSecure = function(e) {
+                        return e ? e.replace(/^http:/, "https:") : e
+                    }
+                    ,
+                    e.exports.isOnAmazon = function(e) {
+                        return /\.amazon\.(com?\.)?[a-z]{2,4}:?/i.test(e)
+                    }
+                    ,
+                    e.exports.isOnAllowlistedPage = function(e) {
+                        var t = ["ca", "mx", "br", "de", "uk", "fr", "it", "es", "in", "ae", "sa", "nl", "tr", "se", "jp", "au", "cn"].join("|");
+                        return new RegExp("\\.amazon(\\.com?)?(\\.(" + t + "))?(:(\\d){1,6})?(/.*)?$","i").test(e) || /\.(imdb|boxofficemojo|dpreview)\.com(:(\d){1,6})?(\/.*)?$/i.test(e)
+                    }
+                    ,
+                    e.exports.prepareCreativeTemplateNameForTagging = S,
+                    e.exports.handleVideoExperience = function(e, t, n) {
+                        var a = i("../../components/sfCounters").AD_LOAD_COUNTERS
+                          , r = i("../../components/sfEvents").AD_LOAD_EVENTS;
+                        try {
+                            t.client.countMetric(a.RENDER_START, 1),
+                            t.client.logCsaEvent(r.RENDER_START),
+                            e.setupOMVideoPlayer(t.options, n),
+                            t.client.countMetric(a.RENDER_END, 1),
+                            t.client.logCsaEvent(r.RENDER_END)
+                        } catch (e) {
+                            t.client.handleFallbackBehavior()
+                        }
+                    }
+                }
+                , {
+                    "../../components/pixel": 13,
+                    "../../components/sfCounters": 15,
+                    "../../components/sfEvents": 16,
+                    "./measurementMethods": 10,
+                    "@amzn/apejs-url-query-params": 5
+                }],
+                12: [function(K, Z, e) {
+                    window.SFClient = function(a, r) {
+                        var i = K("@amzn/apejs-click-tracking")
+                          , e = K("../components/sfCounters")
+                          , t = K("../components/sfEvents")
+                          , o = K("../components/util")
+                          , n = K("../components/sfAPI")
+                          , s = K("./messenger/sfMsgHandler")
+                          , c = K("./messenger/evaluateImpressionMeasurementMethod").evaluateImpressionMeasurementMethod
+                          , d = K("./clientAPI")
+                          , l = s.messenger
+                          , u = s.localErrorLog
+                          , p = s.isSecure
+                          , f = s.replaceWithSecure
+                          , m = s.isOnAmazon
+                          , E = s.isOnAllowlistedPage
+                          , g = s.handleVideoExperience
+                          , v = l.fireImageLoaded
+                          , R = l.handleNoAdContent
+                          , T = o.decodeBase64
+                          , I = l.createXspRequest
+                          , M = l.createXGetAdRequest
+                          , _ = o.ABP_STATUS
+                          , S = e.AD_LOAD_COUNTERS
+                          , N = t.AD_LOAD_EVENTS
+                          , C = e.GET_QUERY_PARAM_COUNTER;
+                        if (!E(r.referrer))
+                            return null;
+                        var h = a.$sf = n.produce()
+                          , y = {
+                            sendAdBarTrace: function(e, t) {
+                                l.sendMessage("sendAdBarTrace", {
+                                    field: e,
+                                    traceInfo: t
+                                })
+                            },
+                            changeSize: function(e, t) {
+                                l.sendMessage("changeSize", {
+                                    width: e,
+                                    height: t
+                                })
+                            },
+                            collapseSlot: function() {
+                                l.sendMessage("collapseSlot")
+                            },
+                            handleFallbackBehavior: function() {
+                                (l.client.forceFallback || l.client.collapseSlot)()
+                            },
+                            logError: function(e, t, n) {
+                                l.sendMessage("logError", {
+                                    message: e,
+                                    error: t
+                                })
+                            },
+                            logCsaEvent: function(e) {
+                                l.sendMessage("logCsaEvent", {
+                                    metricName: e
+                                })
+                            },
+                            addCsaEntity: function(e) {
+                                l.sendMessage("addEntity", e)
+                            },
+                            sendCsmLatencyMetric: function(e, t) {
+                                l.sendMessage("sendCsmLatencyMetric", {
+                                    metric: e,
+                                    metricMsg: t,
+                                    timestamp: o.now()
+                                })
+                            },
+                            markCsaLatencyMetric: function(e) {
+                                l.sendMessage("markCsaLatencyMetric", {
+                                    metric: e,
+                                    timestamp: o.now()
+                                })
+                            },
+                            countMetric: function(e, t, n) {
+                                l.sendMessage("countMetric", {
+                                    metricMsg: e,
+                                    value: t,
+                                    isGlobal: n
+                                })
+                            },
+                            addCsmTag: function(e, t, n) {
+                                l.sendMessage("addCsmTag", {
+                                    tag: e,
+                                    msg: t,
+                                    isGlobal: n
+                                })
+                            },
+                            fireViewableLatencyMetrics: function() {
+                                l.sendMessage("fireViewableLatencyMetrics", {
+                                    adLoadedTimestamp: o.now()
+                                })
+                            },
+                            customMessage: function(e, t) {
+                                l.sendMessage("customMessage", {
+                                    key: e,
+                                    body: t
+                                })
+                            },
+                            isSupported: function() {
+                                return "function" == typeof parent.postMessage
+                            },
+                            getARID: function() {
+                                return l.options.arid
+                            },
+                            isOnAmazon: function() {
+                                return m(l.options.hostDomain)
+                            },
+                            getPageId: function() {
+                                var e = l.client.getAanParams().match(/\bpid=([^;]+)\b/);
+                                return e ? e[1] : null
+                            },
+                            getDebugInfo: function(e) {
+                                var t = a.aanResponse || (r.aanResponse ? r.aanResponse[l.options.slotName + "adData"] : {})
+                                  , n = {
+                                    arid: l.options.arid,
+                                    slot: l.options.slot,
+                                    slotName: l.options.slotName,
+                                    shazamId: t.shazamId,
+                                    creativeId: t.creativeId || t.cid,
+                                    adId: t.adId || t.aid,
+                                    src: l.options.src,
+                                    iframeHtml: r.body.innerHTML || ""
+                                };
+                                l.client.customMessage(e.key, n)
+                            },
+                            getAanParams: {
+                                apiFunc: function() {
+                                    return l.options.aanParams || ""
+                                },
+                                logInvocation: !0
+                            },
+                            sendAdInfo: function(e) {
+                                e && l.options.adCreativeMetaData && (l.options.adCreativeMetaData.adCreativeDetails = e)
+                            },
+                            registerCustomMessageListener: function(e, t) {
+                                l.msgListeners[e] = t
+                            },
+                            getQueryParam: {
+                                apiFunc: function(e) {
+                                    l.client.countMetric(C + ":" + e, 1);
+                                    var t = "";
+                                    return void 0 !== l.options.queryParams && "string" == typeof e && (0 !== e.indexOf("sf-") && (t = "sf-" + e),
+                                    t = l.options.queryParams[t] || ""),
+                                    t
+                                },
+                                logInvocation: !0
+                            },
+                            getPlacementInfo: {
+                                apiFunc: function() {
+                                    var e = {};
+                                    return e.slot = l.options.slot,
+                                    e.slotName = l.options.slotName,
+                                    e
+                                },
+                                logInvocation: !0
+                            },
+                            executePostCreativeRenderingSteps: function() {
+                                W()
+                            },
+                            fireImpression: d.fireImpression,
+                            fireMetricsForLegacyImpression: d.fireMetricsForLegacyImpression,
+                            updateViewability: function(e) {
+                                if (n.update(e),
+                                l.options.aaxInstrPixelUrl) {
+                                    l.options.isNoInventory || void 0 === e.atf || l.fireMeasurabilityPixel(e);
+                                    var t = h.ext.geom();
+                                    l.fireViewablePixels(t && t.self && t.self.iv, e.payload, e.viewabilityStandards, l.options.isNoInventory)
+                                }
+                            },
+                            loadAdFeedback: function() {
+                                l.sendMessage("loadAdFeedback", l.options.adCreativeMetaData)
+                            },
+                            forceFallback: function() {
+                                B(!0)
+                            },
+                            requestVideoAutoplay: function() {
+                                l.sendMessage("requestVideoAutoplay")
+                            },
+                            releaseVideoAutoplay: function() {
+                                l.sendMessage("releaseVideoAutoplay")
+                            },
+                            haveVideoAutoplayPermission: function() {
+                                l.sendMessage("haveVideoAutoplayPermission")
+                            },
+                            logSafeframeResourceTimingData: function() {
+                                l.sendMessage("logSafeframeResourceTimingData", {
+                                    resourceTimingData: performance.getEntriesByType("resource"),
+                                    navigationStartTime: performance.timing.navigationStart
+                                })
+                            }
+                        };
+                        l.produceClientAPIs(y);
+                        var A = function(t, e, n, a, r) {
+                            var i, o;
+                            try {
+                                o = (i = r || new Error(t,e,n)).message + ": " + i.stack
+                            } catch (e) {
+                                i = null,
+                                o = t
+                            }
+                            return l.client.isSupported() ? l.client.logError(o, i) : u("Error in Safeframe window ", o),
+                            B(),
+                            !0
+                        };
+                        function x() {
+                            a.onerror = A,
+                            a.$sf = h,
+                            a.aaxInstrPixelUrl = l.options.aaxInstrPixelUrl
+                        }
+                        a.onerror = A;
+                        var P = r.open
+                          , D = "function" == typeof P.apply ? function() {
+                            return P.apply(r, arguments)
+                        }
+                        : function() {
+                            return Function.apply.call(P, r, arguments)
+                        }
+                        ;
+                        r.open = function(e, t) {
+                            D(e, t),
+                            x()
+                        }
+                        ,
+                        o.disableCookieAccess();
+                        var O = r.write
+                          , w = "function" == typeof O.apply ? function() {
+                            return O.apply(r, arguments)
+                        }
+                        : function() {
+                            return Function.apply.call(O, r, arguments)
+                        }
+                          , b = !1
+                          , L = !1;
+                        function U(e) {
+                            l.client.countMetric(S.RENDER_START, 1),
+                            l.client.logCsaEvent(N.RENDER_START);
+                            var t = {};
+                            t.readyState = r.readyState,
+                            l.client.sendAdBarTrace("renderHtmlContentStart", t),
+                            "complete" === r.readyState && r.open(),
+                            w(e),
+                            x(),
+                            r.close(),
+                            b = !0,
+                            o.addWindowListener("load", V),
+                            o.addWindowListener("load", l.client.fireViewableLatencyMetrics),
+                            o.addWindowListener("load", k),
+                            setTimeout(W, 0),
+                            l.client.countMetric(S.RENDER_END, 1),
+                            l.client.logCsaEvent(N.RENDER_END),
+                            t.readyState = r.readyState,
+                            l.client.sendAdBarTrace("renderHtmlContentEnd", t)
+                        }
+                        function k() {
+                            l.options.collectSafeframeRTD && performance && performance.getEntriesByType ? l.client.logSafeframeResourceTimingData() : (l.client.countMetric(e.RESOURCE_TIMING_DATA_COUNTERS.DEPENDENCIES_NOT_MET, 1),
+                            l.client.logCsaEvent(t.RESOURCE_TIMING_DATA_EVENTS.DEPENDENCIES_NOT_MET))
+                        }
+                        r.write = U;
+                        var F = !1;
+                        function V() {
+                            F || (F = !0,
+                            l.client.sendCsmLatencyMetric("ld"),
+                            l.client.markCsaLatencyMetric("loaded"))
+                        }
+                        function B(e) {
+                            var t, n, a;
+                            b && !e || (l.options.fallbackStaticAdImgUrl && l.options.fallbackStaticAdClickUrl ? (t = l.options.fallbackStaticAdImgUrl,
+                            n = l.options.fallbackStaticAdClickUrl,
+                            a = l.options.fallbackStaticAdExtraStyle,
+                            w('<a target="_top" href="' + n + '"><img src="' + t + '" ' + (a || "") + "></a>"),
+                            x(),
+                            o.ensureMessageListener(l.receiveMessage),
+                            r.close(),
+                            l.client.loadAdFeedback(),
+                            b = L = !0) : l.client.collapseSlot())
+                        }
+                        function W() {
+                            o.ensureMessageListener(l.receiveMessage);
+                            var e = {};
+                            L ? e.firstInvocation = !1 : (e.firstInvocation = !0,
+                            L = !0,
+                            l.client.loadAdFeedback(),
+                            l.sendMessage("startPixelTrackingForLegacyImpression"),
+                            c(l.client, function(e) {
+                                l.sendMessage("startPixelTracking", {
+                                    measurementMethod: e
+                                })
+                            }),
+                            l.options.adCreativeMetaData && v(l.options.adCreativeMetaData.adCreativeTemplateName),
+                            l.client.countMetric(S.CREATIVE_WRITTEN, 1),
+                            l.client.logCsaEvent(N.CREATIVE_WRITTEN)),
+                            l.client.sendAdBarTrace("doneFunction", e)
+                        }
+                        a.addEventListener ? a.addEventListener("message", l.receiveMessage, !1) : a.attachEvent && a.attachEvent("message", l.receiveMessage);
+                        try {
+                            l.options = JSON.parse(a.name)
+                        } catch (e) {
+                            u("Could not parse name ", e)
+                        }
+                        a.name = "";
+                        var H = a.addEventListener
+                          , z = a.removeEventListener
+                          , j = a.attachEvent
+                          , J = a.detachEvent;
+                        function q(e) {
+                            var t = String(e);
+                            return "message" === (t = t.toLowerCase()) || "onmessage" === t
+                        }
+                        a.addEventListener && (a.addEventListener = function(e, t, n) {
+                            H.call(a, e, t, n)
+                        }
+                        ,
+                        a.removeEventListener = function(e, t, n) {
+                            q(e) || z.call(a, e, t, n)
+                        }
+                        ),
+                        a.attachEvent && (a.attachEvent = function(e, t) {
+                            return j.call(a, e, t)
+                        }
+                        ,
+                        a.detachEvent = function(e, t) {
+                            return !q(e) && J.call(a, e, t)
+                        }
+                        ),
+                        l.client.sendCsmLatencyMetric("be"),
+                        l.client.markCsaLatencyMetric("bodyEnd"),
+                        l.sendMessage("safeFrameReady"),
+                        l.client.countMetric(S.IFRAME_INIT, 1),
+                        l.client.logCsaEvent(N.IFRAME_INIT),
+                        l.options.disableResizeFunc || l.sendMessage("resizeSafeFrameAd"),
+                        l.options.resizePlacementStyle && l.sendMessage("setResizePlacementStyle");
+                        var G = function(e, t) {
+                            if (l.options.isNoInventory = !1,
+                            l.tagRenderFlow(),
+                            !b) {
+                                var n = e;
+                                l.options.clickTracking && (n = i.replace(l.options.clickTracking, n)),
+                                t && t.length && (l.client.countMetric(S.MEASUREMENT_HTML, 1),
+                                l.client.logCsaEvent(N.MEASUREMENT_HTML)),
+                                o.isVideo(l.options.mediaType) ? g(a, l, n) : ("string" == typeof t && (n = n.concat(t)),
+                                U(n))
+                            }
+                        };
+                        a.writeAdHandler = null;
+                        var Y = {};
+                        if (Y.serverSide = l.options.serverSideFetchAd,
+                        "true" !== l.options.abpAcceptable && l.options.enableFallbackForAbpStatuses && -1 < l.options.enableFallbackForAbpStatuses.indexOf(_[l.options.abpStatus]))
+                            B(!0);
+                        else if ("true" === l.options.serverSideFetchAd)
+                            if (l.options.htmlContentEncoded) {
+                                var Q = T(l.options.htmlContentEncoded)
+                                  , X = T(l.options.measurementHtmlEncoded ? l.options.measurementHtmlEncoded : "");
+                                Y.htmlContent = Q,
+                                a.writeAdHandler = function() {
+                                    G(Q, X)
+                                }
+                            } else
+                                R(),
+                                Y.noAdContent = !0;
+                        else {
+                            var $ = p(l.options.hostDomain) ? f(l.options.src) : l.options.src;
+                            (Y.adSource = $) && -1 !== $.indexOf("x/getad") ? (a.writeAdHandler = function() {
+                                M($, B, w, r.write)
+                            }
+                            ,
+                            Y.isXsp = !1) : (a.writeAdHandler = function() {
+                                I($, l.options, R, w, G)
+                            }
+                            ,
+                            Y.isXsp = !0)
+                        }
+                        return l.client.sendAdBarTrace("adRenderFlow", Y),
+                        l.msgListeners.initAdReporter = function(e) {
+                            try {
+                                a.adReporterConfig = e;
+                                var t = r.createElement("script");
+                                t.type = "text/javascript",
+                                t.async = !0,
+                                t.charset = "utf-8",
+                                t.src = e && e.adReporterClientUrl ? e.adReporterClientUrl : "",
+                                (r.getElementsByTagName("head")[0] || r.getElementsByTagName("body")[0]).appendChild(t),
+                                l.sendMessage("saveAdDetailsForAdReporter")
+                            } catch (e) {
+                                u("Error appending adReporterClient script", e)
+                            }
+                        }
+                        ,
+                        Z.exports.done = W,
+                        l.client
+                    }(window, document),
+                    "function" == typeof window.writeAdHandler && window.writeAdHandler()
+                }
+                , {
+                    "../components/sfAPI": 14,
+                    "../components/sfCounters": 15,
+                    "../components/sfEvents": 16,
+                    "../components/util": 17,
+                    "./clientAPI": 8,
+                    "./messenger/evaluateImpressionMeasurementMethod": 9,
+                    "./messenger/sfMsgHandler": 11,
+                    "@amzn/apejs-click-tracking": 1
+                }],
+                13: [function(e, t, n) {
+                    var f = function(e, t, n) {
+                        var a = e + t;
+                        return n && (a += "_" + n),
+                        a
+                    };
+                    t.exports.firePixel = function(t, n, e, a, r, i, o) {
+                        if (!t || !n || "string" != typeof n || n.length <= 0 || !e || "string" != typeof e)
+                            return !1;
+                        try {
+                            return null === document.getElementById(e) && (s = n,
+                            c = e,
+                            d = document.getElementsByTagName("body")[0],
+                            l = function() {
+                                t.countMetric(f(a, "loaded", i), 1),
+                                t.logCsaEvent(f(r, "loaded", i)),
+                                t.sendAdBarTrace("pixels", {
+                                    loaded: {
+                                        pixelUrl: n,
+                                        additionalTrace: o
+                                    }
+                                })
+                            }
+                            ,
+                            u = function() {
+                                t.countMetric(f(a, "error", i), 1),
+                                t.logCsaEvent(f(r, "error", i)),
+                                t.sendAdBarTrace("pixels", {
+                                    error: {
+                                        pixelUrl: n,
+                                        additionalTrace: o
+                                    }
+                                })
+                            }
+                            ,
+                            (p = document.createElement("img")).id = c,
+                            p.src = s,
+                            p.style.display = "none",
+                            p.onload = l,
+                            p.onerror = u,
+                            d.appendChild(p),
+                            t.logCsaEvent(f(r, "fired", i)),
+                            t.countMetric(f(a, "fired", i), 1),
+                            t.sendAdBarTrace("pixels", {
+                                fired: {
+                                    pixelUrl: n,
+                                    additionalTrace: o
+                                }
+                            }),
+                            !0)
+                        } catch (e) {
+                            return t.logError("Error firing pixels: " + n, e),
+                            !1
+                        }
+                        var s, c, d, l, u, p
+                    }
+                }
+                , {}],
+                14: [function(e, t, n) {
+                    var a = null
+                      , r = null
+                      , i = {
+                        ext: {}
+                    };
+                    i.ext.inViewPercentage = function() {
+                        return a = a || 0,
+                        Math.round(100 * a)
+                    }
+                    ,
+                    i.ext.geom = function() {
+                        return r = r || {}
+                    }
+                    ,
+                    t.exports.produce = function() {
+                        return i
+                    }
+                    ,
+                    t.exports.update = function(e) {
+                        null === (a = e && e.geom && e.geom.self.iv) && delete i.ext.inViewPercentage,
+                        null === (r = e && e.geom) && delete i.ext.geom
+                    }
+                }
+                , {}],
+                15: [function(e, t, n) {
+                    t.exports.AD_LOAD_COUNTERS = {
+                        IFRAME_INIT: "adload:iframeinitialized",
+                        RENDER_START: "adload:renderstart",
+                        RENDER_END: "adload:renderend",
+                        CREATIVE_WRITTEN: "adload:creativewritten",
+                        IMP: "adload:impression",
+                        UNSERVED_IMP: "adload:unservedimpression",
+                        VIEWABILITY: "adload:viewability",
+                        UNSERVED_VIEWABILITY: "adload:unservedviewability",
+                        MEASURABILITY: "adload:measurability",
+                        MEASUREMENT_HTML: "adload:measurementhtml"
+                    },
+                    t.exports.AD_FETCH_COUNTERS = {
+                        REQUEST_START: "adfetch:request",
+                        PUNT_RETURNED: "adfetch:punt",
+                        ERROR_RETURNED: "adfetch:error",
+                        EMPTY_RESPONSE: "adfetch:noad",
+                        RENDERED_AD: "adfetch:renderad",
+                        RENDER_ERROR: "adfetch:rendererror",
+                        HTTP_ERROR: "adfetch:httperror",
+                        EXCEPTION: "adfetch:exception"
+                    },
+                    t.exports.RESOURCE_TIMING_DATA_COUNTERS = {
+                        DEPENDENCIES_NOT_MET: "ResourceTimingData.DependenciesNotMet"
+                    },
+                    t.exports.GET_QUERY_PARAM_COUNTER = "getqueryparam",
+                    t.exports.IMPRESSION_COUNTERS = {
+                        LEGACY_IMPRESSION_COUNTER: "imp:legacy",
+                        GLOBAL_IMPRESSION_FIRED_COUNTER: "impressionFired"
+                    },
+                    t.exports.BTR_COUNTERS = {
+                        LOADED: "btr:loaded",
+                        ERROR: "btr:error",
+                        IMPRESSION: "btr:impression",
+                        NO_IMAGES: "btr:noimages",
+                        PIXELS: "btr:pixels"
+                    }
+                }
+                , {}],
+                16: [function(e, t, n) {
+                    t.exports.AD_LOAD_EVENTS = {
+                        IFRAME_INIT: "adload_iframeinitialized",
+                        RENDER_START: "adload_renderstart",
+                        RENDER_END: "adload_renderend",
+                        CREATIVE_WRITTEN: "adload_creativewritten",
+                        IMP: "impression",
+                        UNSERVED_IMP: "unservedimpression",
+                        VIEWABILITY: "viewability",
+                        UNSERVED_VIEWABILITY: "unservedviewability",
+                        MEASURABILITY: "measurability",
+                        MEASUREMENT_HTML: "measurementhtml"
+                    },
+                    t.exports.MESSENGER_EVENTS = {
+                        API: "messenger_"
+                    },
+                    t.exports.AD_FETCH_EVENTS = {
+                        REQUEST_START: "adfetch_request",
+                        PUNT_RETURNED: "adfetch_punt",
+                        ERROR_RETURNED: "adfetch_error",
+                        EMPTY_RESPONSE: "adfetch_noad",
+                        RENDERED_AD: "adfetch_renderad",
+                        RENDER_ERROR: "adfetch_rendererror",
+                        HTTP_ERROR: "adfetch_httperror",
+                        EXCEPTION: "adfetch_exception"
+                    },
+                    t.exports.RESOURCE_TIMING_DATA_EVENTS = {
+                        DEPENDENCIES_NOT_MET: "resourceTimingData_DependenciesNotMet",
+                        DEPENDENCIES_MET: "resourceTimingData_DependenciesMet"
+                    }
+                }
+                , {}],
+                17: [function(e, u, t) {
+                    /*
+    @license
+    Underscore.js 1.8.3
+    http://underscorejs.org
+    (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+    Underscore may be freely distributed under the MIT license.
+*/
+                    var a = function() {
+                        return window.P && window.P.AUI_BUILD_DATE
+                    };
+                    u.exports.throttle = function(n, a, r) {
+                        var i, o, s, c = null, d = 0;
+                        r || (r = {});
+                        var l = function() {
+                            d = !1 === r.leading ? 0 : u.exports.now(),
+                            c = null,
+                            s = n.apply(i, o),
+                            c || (i = o = null)
+                        };
+                        return function() {
+                            var e = u.exports.now();
+                            d || !1 !== r.leading || (d = e);
+                            var t = a - (e - d);
+                            return i = this,
+                            o = arguments,
+                            t <= 0 || a < t ? (c && (clearTimeout(c),
+                            c = null),
+                            d = e,
+                            s = n.apply(i, o),
+                            c || (i = o = null)) : c || !1 === r.trailing || (c = setTimeout(l, t)),
+                            s
+                        }
+                    }
+                    ,
+                    u.exports.now = function() {
+                        return Date.now ? Date.now() : (new Date).getTime()
+                    }
+                    ,
+                    u.exports.addListener = function(e, t, n) {
+                        e.addEventListener ? e.addEventListener(t, n, !1) : window.attachEvent && e.attachEvent("on" + t, n)
+                    }
+                    ,
+                    u.exports.removeListener = function(e, t, n) {
+                        e.removeEventListener && e.removeEventListener(t, n, !1)
+                    }
+                    ,
+                    u.exports.addWindowListener = function(e, t) {
+                        u.exports.addListener(window, e, t)
+                    }
+                    ,
+                    u.exports.removeWindowListener = function(e, t) {
+                        window.removeEventListener ? window.removeEventListener(e, t, !1) : window.detachEvent && window.detachEvent("on" + e, t)
+                    }
+                    ,
+                    u.exports.ensureMessageListener = function(e) {
+                        u.exports.removeWindowListener("message", e),
+                        u.exports.addWindowListener("message", e)
+                    }
+                    ,
+                    u.exports.decodeBase64 = function(e) {
+                        var t, n, a, r, i, o, s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", c = "", d = 0;
+                        for (e = e.replace(/[^A-Za-z0-9\+\/\=]/g, ""); d < e.length; )
+                            t = s.indexOf(e.charAt(d++)) << 2 | (r = s.indexOf(e.charAt(d++))) >> 4,
+                            n = (15 & r) << 4 | (i = s.indexOf(e.charAt(d++))) >> 2,
+                            a = (3 & i) << 6 | (o = s.indexOf(e.charAt(d++))),
+                            c += String.fromCharCode(t),
+                            64 != i && (c += String.fromCharCode(n)),
+                            64 != o && (c += String.fromCharCode(a));
+                        return c = function(e) {
+                            for (var t = "", n = 0, a = 0, r = 0, i = 0; n < e.length; )
+                                (a = e.charCodeAt(n)) < 128 ? (t += String.fromCharCode(a),
+                                n++) : 191 < a && a < 224 ? (r = e.charCodeAt(n + 1),
+                                t += String.fromCharCode((31 & a) << 6 | 63 & r),
+                                n += 2) : (r = e.charCodeAt(n + 1),
+                                i = e.charCodeAt(n + 2),
+                                t += String.fromCharCode((15 & a) << 12 | (63 & r) << 6 | 63 & i),
+                                n += 3);
+                            return t
+                        }(c)
+                    }
+                    ,
+                    u.exports.createScript = function(e, t, n, a, r) {
+                        if (!document.getElementById(n)) {
+                            var i = document.createElement("script");
+                            return i.async = !0,
+                            i.setAttribute("crossorigin", "anonymous"),
+                            i.src = e,
+                            i.type = t,
+                            i.id = n,
+                            i.onerror = a,
+                            i.onload = r,
+                            i
+                        }
+                    }
+                    ,
+                    u.exports.isAUIAvailable = a,
+                    u.exports.safeFunctionWrapper = function(e, t, n) {
+                        return a() && "function" == typeof window.P.guardError ? P.guardError("APE-SafeFrame", e) : function() {
+                            try {
+                                e.apply(this, arguments)
+                            } catch (e) {
+                                "function" == typeof t && n && t(n, e)
+                            }
+                        }
+                    }
+                    ,
+                    u.exports.getCookie = function(e) {
+                        var t = e + "=";
+                        try {
+                            for (var n = decodeURIComponent(document.cookie).split(";"), a = 0; a < n.length; a++) {
+                                for (var r = n[a]; " " == r.charAt(0); )
+                                    r = r.substring(1);
+                                if (0 == r.indexOf(t))
+                                    return r.substring(t.length, r.length)
+                            }
+                        } catch (e) {}
+                        return ""
+                    }
+                    ,
+                    u.exports.disableCookieAccess = function() {
+                        try {
+                            Object && Object.defineProperty && "function" == typeof Object.defineProperty ? Object.defineProperty(document, "cookie", {
+                                get: function() {
+                                    return ""
+                                },
+                                set: function() {}
+                            }) : (document.__defineGetter__("cookie", function() {
+                                return ""
+                            }),
+                            document.__defineSetter__("cookie", function() {}))
+                        } catch (e) {}
+                    }
+                    ,
+                    u.exports.setObjectStyles = function(e, t) {
+                        if (e && t)
+                            for (var n in t)
+                                e.style[n] = t[n];
+                        return e
+                    }
+                    ,
+                    u.exports.ABP_STATUS = {
+                        1: "Enabled",
+                        0: "NotEnabled",
+                        "-1": "Unknown"
+                    },
+                    u.exports.hasHostname = function(e) {
+                        var t = "";
+                        return e && (t = -1 < e.indexOf("//") ? e.split("/")[2] : e.split("/")[0]),
+                        0 != t.length
+                    }
+                    ,
+                    u.exports.isVideo = function(e) {
+                        return "V" === e
+                    }
+                }
+                , {}]
+            }, {}, [12]);
+        </script><style>body{background:transparent;}</style><script type="data-doubleclick" src="./blank_pixel._V137875076_.gif"></script> <script>document.defaultAd = {h:90,w:728}; document.ad = document.defaultAd; document.adSlotConfig = {allowFadeIn: true, resizeIframe: true};</script>
+ 
+
+
+ 
+ <title></title>
+ 
+ <style>#ad{visibility:visible!important}@font-face{font-display:swap;font-family:'Amazon Ember';src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-cc7ebaa05a2cd3b02c0929ac0475a44ab30b7efa._V2_.woff2) format('woff2'),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-8a9db402d8966ae93717c348b9ab0bd08703a7a7._V2_.woff) format('woff')}@font-face{font-display:swap;font-family:'Amazon Ember';font-style:italic;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rgit-9cc1bb64eb270135f1adf3a4881c2ee5e7c37be5._V2_.woff2) format('woff2'),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rgit-a4dc98d644ff2aedd41da3da462f09ffce86eafb._V2_.woff) format('woff')}@font-face{font-display:swap;font-family:'Amazon Ember';font-weight:700;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-46b91bda68161c14e554a779643ef4957431987b._V2_.woff2) format('woff2'),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-b605252f87b8b3df5ae206596dac0938fc5888bc._V2_.woff) format('woff')}@font-face{font-display:swap;font-family:'Amazon Ember';font-style:italic;font-weight:700;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bdit-80ff7aba37dd1ff5a6b90233a19e3a780a96dc2f._V2_.woff2) format('woff2'),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bdit-57598ce426a612be5a1d15eee08252668fca5e7a._V2_.woff) format('woff')}@font-face{font-family:'Amazon Ember';font-display:swap;font-weight:300;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_lt-245045fa7de5df027437f47209a5add3b48108a1.woff2) format('woff2'),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_lt-ea968a84d1487df3bbf00e11a5637ffb61c750b6.woff) format('woff')}#ad,#div-gpt-ad,body,html{margin:0;font-family:'Amazon Ember',arial,sans-serif;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;font-size:13px;line-height:18px;width:100%;height:100%}.swiper-horizontal>.swiper-pagination-bullets,.swiper-pagination-bullets.swiper-pagination-horizontal,.swiper-pagination-custom,.swiper-pagination-fraction{bottom:0!important}.swiper-pagination-bullet{border:1px solid #bbbfbf!important;opacity:1!important;background:0 0!important}.swiper-pagination-bullet-active{border:1px solid #007185!important;background-color:#007185!important}.image-carousel-slide.swiper-slide{padding-bottom:25px}@keyframes fadeInAnimation{0%{opacity:0}100%{opacity:1}}.fade-in{animation:fadeInAnimation ease 1s;animation-iteration-count:.5s;animation-fill-mode:forwards}@keyframes reverseFadeInAnimation{0%{opacity:1}100%{opacity:0}}.fade-in-collapsed{animation:fadeInAnimation ease 1s}.fade-in-expanded{animation:reverseFadeInAnimation ease-in 1s reverse}.hover-scale-animation{transition:scale .5s cubic-bezier(.19,1,.22,1)}.zooming-image-hovered{scale:1.1}.contrast-image-hovered{filter:contrast(1.13)}.contrast-image-hovered-stronger{filter:contrast(1.25)}.aspect-portrait{aspect-ratio:9/16}.image-zoom-animation{transform:scale(.85);transition:.3s}.image-zoom-animation-end{transform:scale(1)}.image-shine-animation{mask:linear-gradient(135deg,#000 40%,#0006,#000 60%) 100% 100%/250% 250%;-webkit-mask:linear-gradient(135deg,#000 40%,#0006,#000 60%) 100% 100%/250% 250%;transition:.8s}.image-shine-animation-end{mask-position:0 0;-webkit-mask-position:0 0}
+
+/*! tailwindcss v3.0.7 | MIT License | https://tailwindcss.com*/*,:after,:before{border:0 solid;box-sizing:border-box}:after,:before{--tw-content:""}html{-webkit-text-size-adjust:100%;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4}body{line-height:inherit;margin:0}hr{border-top-width:1px;color:inherit;height:0}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-collapse:collapse;border-color:inherit;text-indent:0}button,input,optgroup,select,textarea{color:inherit;font-family:inherit;font-size:100%;line-height:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{color:#ccc;opacity:1}input::placeholder,textarea::placeholder{color:#ccc;opacity:1}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{height:auto;max-width:100%}[hidden]{display:none}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));--tw-border-opacity:1;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);border-color:rgb(229 231 235/var(--tw-border-opacity))}.container{width:100%}@media (min-width:260px){.container{max-width:260px}}@media (min-width:300px){.container{max-width:300px}}@media (min-width:340px){.container{max-width:340px}}@media (min-width:375px){.container{max-width:375px}}@media (min-width:540px){.container{max-width:540px}}@media (min-width:620px){.container{max-width:620px}}@media (min-width:800px){.container{max-width:800px}}.btn{align-items:center;border:1px solid;border-radius:3px;cursor:pointer;display:inline-flex;font-size:13px;justify-content:center;overflow:hidden;position:relative;text-decoration:none;-webkit-transform:translateZ(0);-webkit-user-select:none;-moz-user-select:none;user-select:none;vertical-align:middle;z-index:1000}.btn :not(:hover){box-shadow:inset 0 1px 0 hsla(0,0%,100%,.6)}.btn-primary{background:linear-gradient(#fee6b0,#eeba37);border-color:#be952c #a68226 #9b7924}.btn-primary:hover{background:linear-gradient(#fede97,#ecb21f);border-color:#a98527 #917221 #86691f}.btn-primary:active{background:#fee6b0;border-color:#9b7924 #a68226 #a68226;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}.btn-secondary{background:linear-gradient(#f5f5f5,#e3e3e3);border-color:#b7b7b7 #aaa #a0a0a0}.btn-secondary:hover{background:linear-gradient(#e8e8e8,#d6d6d6);border-color:#a7a77a #90905f #808055}.btn-secondary:active{background:#f5f5f5;border-color:#b7b7b7 #aaa #a0a0a0;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}.btn-preorder{background:linear-gradient(#e6e6d0,#cdcda1);border-color:#b2b289 #9d9d6b #90905f}.btn-preorder:hover{background:linear-gradient(#ddddbf,#c4c490);border-color:#a7a77a #90905f #808055}.btn-preorder:active{background:#e6e6d0;border-color:#90905f #9d9d6b #9d9d6b;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}.btn-featured{background:none;border:none;color:#007185;font-size:13px;line-height:19px;text-decoration:none}.btn-featured:hover{color:#c7511f;text-decoration:underline}.btn-featured-skinny{background:none;border:none;color:#007185;font-size:15px;font-weight:100;line-height:19px;text-decoration:none}.btn-featured-skinny:hover{color:#c7511f;text-decoration:underline}.btn-dark{background-color:#000;border:none;border-radius:4px;color:#fff;text-decoration:none}.btn-arrow{background:none;border:none;color:#007185;font-size:13px;font-weight:400;line-height:19px;text-decoration:none}.btn-arrow:after{content:">";font-weight:400;padding-left:4px}.btn-link{background:none;border:none;color:#007185;font-size:14px;font-weight:400;line-height:21px;text-decoration:none}.btn-link:active,.btn-link:focus,.btn-link:hover{text-decoration:underline}.btn-link-secondary{background:none;border:none;color:#0073c7;font-size:14px;font-weight:400;line-height:21px;text-decoration:none}.btn-link-secondary:active,.btn-link-secondary:focus,.btn-link-secondary:hover{text-decoration:underline}.btn-outline{background:none;border:2px solid #b8bfcb;border-radius:4px;font-weight:700;text-decoration:none}.btn-outline:hover{background-color:#f2f4f6}.btn-block{background:none;border:2px solid #000;border-radius:0;color:#000;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block:hover{background:#000;color:#fff}.btn-block{font-size:13px;line-height:15px;min-width:110px;padding:8px 10px}.btn-block-inverted{background:transparent;border:2px solid #fff;border-radius:0;color:#fff;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-inverted:hover{background:#fff;color:transparent}.btn-block-inverted{font-size:13px;line-height:15px;min-width:110px;padding:8px 10px}.btn-block-xsm{background:none;border:2px solid #000;border-radius:0;color:#000;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-xsm:hover{background:#000;color:#fff}.btn-block-xsm{font-size:10px;line-height:11px;min-width:84px;padding:4px 8px}.btn-block-xsm-inverted{background:transparent;border:2px solid #fff;border-radius:0;color:#fff;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-xsm-inverted:hover{background:#fff;color:transparent}.btn-block-xsm-inverted{font-size:10px;line-height:11px;min-width:84px;padding:4px 8px}.btn-block-sm{background:none;border:2px solid #000;border-radius:0;color:#000;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-sm:hover{background:#000;color:#fff}.btn-block-sm{font-size:10px;line-height:11px;min-width:90px;padding:5px 10px}.btn-block-sm-inverted{background:transparent;border:2px solid #fff;border-radius:0;color:#fff;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-sm-inverted:hover{background:#fff;color:transparent}.btn-block-sm-inverted{font-size:10px;line-height:11px;min-width:90px;padding:5px 10px}.btn-block-md{background:none;border:2px solid #000;border-radius:0;color:#000;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-md:hover{background:#000;color:#fff}.btn-block-md{font-size:14px;line-height:13px;min-width:100px;padding:7px 10px}.btn-block-md-inverted{background:transparent;border:2px solid #fff;border-radius:0;color:#fff;font-weight:700;text-decoration:none;text-transform:uppercase}.btn-block-md-inverted:hover{background:#fff;color:transparent}.btn-block-md-inverted{font-size:14px;line-height:13px;min-width:100px;padding:7px 10px}.btn-pill-primary{background:#ffd814;border:1px solid #fcd200;border-radius:20px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-primary:hover{filter:brightness(95%)}.btn-pill-secondary{background:#ffa41c;border:1px solid #ff8f00;;border-radius:20px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-secondary:hover{filter:brightness(95%)}.btn-pill-gray{background:#f7f8fa;border:1px solid #adb1b8;;border-radius:20px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-gray:hover{filter:brightness(95%)}.btn-pill-square-primary{background:#ffd814;border:1px solid #fcd200;border-radius:8px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-square-primary:hover{filter:brightness(95%)}.btn-pill-square-secondary{background:#ffa41c;border:1px solid #ff8f00;;border-radius:8px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-square-secondary:hover{filter:brightness(95%)}.btn-pill-square-gray{background:#f7f8fa;border:1px solid #adb1b8;;border-radius:8px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-square-gray:hover{filter:brightness(95%)}.btn-pill-square-white{background:#fff;border:1px solid #d5d9d9;;border-radius:8px;box-shadow:0 2px 5px 0 hsla(180,5%,84%,.5);color:#0f1111;text-align:center}.btn-pill-square-white:hover{filter:brightness(95%)}.btn-text-only{background:none;border:none;color:#007185;font-size:13px;font-weight:400;line-height:19px;text-decoration:none}.btn-text-only:active,.btn-text-only:focus,.btn-text-only:hover{color:#c7511f}.btn-text-and-arrow{background:none;border:none;color:#007185;font-size:13px;font-weight:400;line-height:19px;text-decoration:none}.btn-text-and-arrow:after{content:">";font-weight:400;padding-left:4px}.btn-text-and-arrow:active,.btn-text-and-arrow:focus,.btn-text-and-arrow:hover{color:#c7511f}.btn-xsmall{font-size:10px;padding:0 6px 0 4px}.btn-small,.btn-xsmall{min-height:24px;min-width:70px}.btn-small{font-size:12px;padding:0 6px 0 7px}.btn-medium{font-size:12px;padding:0 10px 0 11px}.btn-inflated,.btn-medium{min-height:29px;min-width:90px}.btn-inflated{font-size:16px;padding:12px 20px;width:100%}.btn-large{padding:0 10px 0 11px}.btn-large,.btn-xlarge{line-height:27px;min-height:29px;min-width:110px}.btn-xlarge{padding:3px 10px 3px 11px}.btn-xxl{line-height:21px;min-height:32px;min-width:110px;padding:15px 5px}.btn-full{line-height:27px;min-height:29px;padding:0 10px 0 11px;width:100%}.btn-twitch-purple{background:#874ef6;border:1px solid #874ef6;border-radius:4px}.btn-twitch-dark,.btn-twitch-purple{color:#fff;font-size:16px;font-style:normal;font-weight:700;height:32px;line-height:21px}.btn-twitch-dark{background:#303333;border:1px solid #fff;border-radius:4px}.btn-twitch-white{background:#fff;border:none;border-radius:4px;color:#000;font-size:16px;font-style:normal;font-weight:700;height:32px;line-height:21px;min-height:55px;min-width:184px}.display-inline-box{display:-webkit-inline-box}.text16{font-size:16px;line-height:1.2}.text18{font-size:18px;line-height:1.2}.text20{font-size:20px;line-height:1.2}.text22{font-size:22px;line-height:1.2}.text24{font-size:24px;line-height:1.2}.visually-hidden{clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px}.direction-rtl{direction:rtl}.direction-ltr{direction:ltr}.a-meter{background-color:#f0f2f2;border-radius:4px;box-shadow:inset 0 0 0 1px #bbbfbf;height:20px;overflow:hidden}.a-meter-bar{background-color:#ffa41c;border-radius:4px;border-bottom-right-radius:0;border-top-right-radius:0;box-shadow:inset -2px 0 0 -1px #f5961d,inset 0 0 0 1px #de7921;height:100%}.customBackgroundGrayBanner:after{border-radius:0 70vh 70vh 0/0 700vh 700vh 0}.customBackgroundGrayBanner:after,.customBackgroundGraySkyscraper:after{background-color:hsla(184,7%,56%,.07);bottom:0;content:"";left:0;pointer-events:none;position:absolute;right:0;top:0;z-index:10}.customBackgroundGraySkyscraper:after{border-radius:0 0 600vh 600vh/0 0 50vh 50vh}.italic-gray{--tw-text-opacity:1!important;color:rgb(51 51 51/var(--tw-text-opacity))!important;font-style:italic!important;font-weight:400!important}.buybox-product-title{grid-area:buybox-product-title}.buybox-headline{grid-area:buybox-headline}.buybox-ratings{grid-area:buybox-ratings}.buybox-dealbadge{grid-area:buybox-dealbadge}.buybox-dealprice{grid-area:buybox-dealprice}.buybox-energybadge{grid-area:buybox-energybadge}.buybox-cta{grid-area:buybox-cta}.buybox-quantity-discount{grid-area:buybox-quantity-discount}.buybox-cpf-logo{grid-area:buybox-cpf-logo}.buybox-social-proofing-message{grid-area:buybox-social-proofing-message}.sponsored-label .feedback-icon{minheight:11px;height:11px;min-width:11px;-o-object-fit:cover;object-fit:cover;-o-object-position:top;object-position:top;width:11px}.sponsored-label:hover .feedback-icon{-o-object-position:bottom;object-position:bottom}.grid-height-override-for-expanded-creative-view{height:calc(100% - 30px)!important}.focus-outline a:focus{outline:2px solid #06f;outline-offset:-2px}.carousel-gradient-left{background:linear-gradient(90deg,#fff 0,transparent 10% 100%,#fff)}.carousel-gradient-right{background:linear-gradient(90deg,#fff 0,transparent 0 90%,#fff)}.carousel-gradient-loop{background:linear-gradient(90deg,#fff 0,transparent 10% 90%,#fff)}.grid-hero-component{grid-area:hero-component}.grid-buy-box{grid-area:buy-box}.grid-cta-button{grid-area:cta-button}.grid-leadgen-button{grid-area:leadgen-button}.grid-custom-image{grid-area:custom-image}.grid-deal-price{grid-area:deal-price}.grid-headline{grid-area:headline}.grid-headline-cta{grid-area:headline-cta}.grid-headline-logo{grid-area:headline-logo}.grid-logo-image{grid-area:logo-image}.grid-price-badge{grid-area:price-badge}.grid-product-image{grid-area:product-image}.grid-product-title{grid-area:product-title}.grid-sponsored-label{grid-area:sponsored-label}.grid-flex{grid-area:flex}.grid-close-button-bar{grid-area:sponsored-label}.grid-video-overlay{grid-area:video-overlay}.grid-terms-and-conditions-label{grid-area:terms-and-conditions-label}.grid-inset-carousel{grid-area:inset-carousel}.grid-title-label{grid-area:title-label}.tw .pointer-events-none{pointer-events:none}.tw .visible{visibility:visible}.tw .invisible{visibility:hidden}.tw .static{position:static}.tw .fixed{position:fixed}.tw .absolute{position:absolute}.tw .relative{position:relative}.tw .right-2{right:16px}.tw .right-\[8px\]{right:8px}.tw .bottom-\[8px\]{bottom:8px}.tw .left-0{left:0}.tw .bottom-\[4px\]{bottom:4px}.tw .right-\[4px\]{right:4px}.tw .top-0{top:0}.tw .right-0{right:0}.tw .bottom-0{bottom:0}.tw .left-\[0\]{left:0}.tw .top-\[0\]{top:0}.tw .bottom-\[0\]{bottom:0}.tw .right-\[0\]{right:0}.tw .top-\[-1px\]{top:-1px}.tw .bottom-\[-1px\]{bottom:-1px}.tw .top-\[-2px\]{top:-2px}.tw .bottom-\[-2px\]{bottom:-2px}.tw .left-\[-2px\]{left:-2px}.tw .right-\[-2px\]{right:-2px}.tw .top-\[-3px\]{top:-3px}.tw .top-\[2px\]{top:2px}.tw .left-\[0px\]{left:0}.tw .top-\[-7px\]{top:-7px}.tw .top-\[-0\.3em\]{top:-.3em}.tw .top-\[1px\]{top:1px}.tw .top-1\/2{top:50%}.tw .left-1\/2{left:50%}.tw .z-10{z-index:10}.tw .z-50{z-index:50}.tw .z-30{z-index:30}.tw .z-20{z-index:20}.tw .z-\[100\]{z-index:100}.tw .-z-10{z-index:-10}.tw .z-\[50\]{z-index:50}.tw .order-1{order:1}.tw .order-3{order:3}.tw .order-4{order:4}.tw .order-2{order:2}.tw .col-start-1{grid-column-start:1}.tw .row-start-1{grid-row-start:1}.tw .m-auto{margin:auto}.tw .m-0{margin:0}.tw .m-0\.5{margin:4px}.tw .mx-1\.5{margin-left:12px;margin-right:12px}.tw .mx-1{margin-left:8px;margin-right:8px}.tw .mx-2{margin-left:16px;margin-right:16px}.tw .my-1{margin-bottom:8px;margin-top:8px}.tw .my-2{margin-bottom:16px;margin-top:16px}.tw .my-0\.5{margin-bottom:4px;margin-top:4px}.tw .my-0{margin-bottom:0;margin-top:0}.tw .mx-0\.5{margin-left:4px;margin-right:4px}.tw .mx-0{margin-left:0;margin-right:0}.tw .mx-auto{margin-left:auto;margin-right:auto}.tw .my-0\.75{margin-bottom:6px;margin-top:6px}.tw .my-0\.25{margin-bottom:2px;margin-top:2px}.tw .my-\[1px\]{margin-bottom:1px;margin-top:1px}.tw .mt-\[20px\]{margin-top:20px}.tw .mb-\[15px\]{margin-bottom:15px}.tw .mb-1{margin-bottom:8px}.tw .ml-1\.5{margin-left:12px}.tw .mr-1{margin-right:8px}.tw .ml-1{margin-left:8px}.tw .mb-\[6px\]{margin-bottom:6px}.tw .mb-1\.5{margin-bottom:12px}.tw .mt-1\.5{margin-top:12px}.tw .mt-1{margin-top:8px}.tw .mt-0\.5{margin-top:4px}.tw .mt-0{margin-top:0}.tw .mb-0\.5{margin-bottom:4px}.tw .mb-0{margin-bottom:0}.tw .mb-\[20px\]{margin-bottom:20px}.tw .mb-2{margin-bottom:16px}.tw .mt-3{margin-top:24px}.tw .\!mb-0{margin-bottom:0!important}.tw .mb-\[3px\]{margin-bottom:3px}.tw .ml-0\.5{margin-left:4px}.tw .ml-0{margin-left:0}.tw .mt-2{margin-top:16px}.tw .mt-\[-7px\]{margin-top:-7px}.tw .-mt-\[148px\]{margin-top:-148px}.tw .-mt-\[15px\]{margin-top:-15px}.tw .mt-\[12px\]{margin-top:12px}.tw .mb-0\.25{margin-bottom:2px}.tw .mt-\[1px\]{margin-top:1px}.tw .-ml-1{margin-left:-8px}.tw .mt-\[6px\]{margin-top:6px}.tw .mt-\[2px\]{margin-top:2px}.tw .mr-0\.75{margin-right:6px}.tw .mr-0{margin-right:0}.tw .mt-\[55px\]{margin-top:55px}.tw .mt-\[-55px\]{margin-top:-55px}.tw .mt-5{margin-top:40px}.tw .mr-\[2px\]{margin-right:2px}.tw .mb-\[2px\]{margin-bottom:2px}.tw .mr-0\.25{margin-right:2px}.tw .ml-\[5px\]{margin-left:5px}.tw .mt-0\.25{margin-top:2px}.tw .mt-\[-2px\]{margin-top:-2px}.tw .ml-\[2px\]{margin-left:2px}.tw .block{display:block}.tw .inline-block{display:inline-block}.tw .inline{display:inline}.tw .flex{display:flex}.tw .inline-flex{display:inline-flex}.tw .grid{display:grid}.tw .hidden{display:none}.tw .aspect-square{aspect-ratio:1/1}.tw .aspect-video{aspect-ratio:16/9}.tw .aspect-\[4\/3\]{aspect-ratio:4/3}.tw .aspect-\[9\/16\]{aspect-ratio:9/16}.tw .h-full{height:100%}.tw .h-auto{height:auto}.tw .h-\[115px\]{height:115px}.tw .h-\[150px\]{height:150px}.tw .h-\[90\%\]{height:90%}.tw .h-\[calc\(100\%-30px\)\]{height:calc(100% - 30px)}.tw .h-\[50vh\]{height:50vh}.tw .h-\[108px\]{height:108px}.tw .h-\[20px\]{height:20px}.tw .h-\[26px\]{height:26px}.tw .h-\[34px\]{height:34px}.tw .h-screen{height:100vh}.tw .h-4{height:32px}.tw .h-1\/4{height:25%}.tw .h-\[60px\]{height:60px}.tw .h-0{height:0}.tw .h-\[283px\]{height:283px}.tw .h-\[1px\]{height:1px}.tw .h-\[30px\]{height:30px}.tw .h-\[64px\]{height:64px}.tw .h-\[36px\]{height:36px}.tw .h-\[16px\]{height:16px}.tw .h-\[18px\]{height:18px}.tw .h-3{height:24px}.tw .h-\[125px\]{height:125px}.tw .max-h-\[120px\]{max-height:120px}.tw .max-h-\[130px\]{max-height:130px}.tw .max-h-\[145px\]{max-height:145px}.tw .max-h-\[90px\]{max-height:90px}.tw .max-h-\[45px\]{max-height:45px}.tw .max-h-\[48px\]{max-height:48px}.tw .max-h-\[105px\]{max-height:105px}.tw .max-h-\[80px\]{max-height:80px}.tw .max-h-full{max-height:100%}.tw .max-h-\[50px\]{max-height:50px}.tw .max-h-\[36px\]{max-height:36px}.tw .max-h-\[44px\]{max-height:44px}.tw .max-h-\[56px\]{max-height:56px}.tw .max-h-\[280px\]{max-height:280px}.tw .max-h-\[200px\]{max-height:200px}.tw .max-h-\[60px\]{max-height:60px}.tw .max-h-\[86px\]{max-height:86px}.tw .max-h-\[110px\]{max-height:110px}.tw .max-h-\[30px\]{max-height:30px}.tw .max-h-\[115px\]{max-height:115px}.tw .max-h-\[135px\]{max-height:135px}.tw .max-h-\[140px\]{max-height:140px}.tw .max-h-4{max-height:32px}.tw .max-h-\[150px\]{max-height:150px}.tw .max-h-\[300px\]{max-height:300px}.tw .max-h-\[240px\]{max-height:240px}.tw .max-h-\[185px\]{max-height:185px}.tw .max-h-\[250px\]{max-height:250px}.tw .max-h-\[72px\]{max-height:72px}.tw .min-h-\[72px\]{min-height:72px}.tw .min-h-\[110px\]{min-height:110px}.tw .min-h-\[55px\]{min-height:55px}.tw .min-h-\[115px\]{min-height:115px}.tw .min-h-0{min-height:0}.tw .min-h-\[30px\]{min-height:30px}.tw .min-h-\[50px\]{min-height:50px}.tw .w-full{width:100%}.tw .w-auto{width:auto}.tw .w-\[115px\]{width:115px}.tw .w-\[90\%\]{width:90%}.tw .w-\[108px\]{width:108px}.tw .w-\[240px\]{width:240px}.tw .w-screen{width:100vw}.tw .w-4{width:32px}.tw .w-\[200px\]{width:200px}.tw .w-\[60px\]{width:60px}.tw .w-0{width:0}.tw .w-\[414px\]{width:414px}.tw .w-\[1px\]{width:1px}.tw .w-\[34px\]{width:34px}.tw .w-\[64px\]{width:64px}.tw .w-\[28px\]{width:28px}.tw .min-w-\[65px\]{min-width:65px}.tw .min-w-\[150px\]{min-width:150px}.tw .min-w-\[60px\]{min-width:60px}.tw .min-w-\[80px\]{min-width:80px}.tw .min-w-\[100px\]{min-width:100px}.tw .min-w-\[104px\]{min-width:104px}.tw .min-w-\[75px\]{min-width:75px}.tw .min-w-\[55px\]{min-width:55px}.tw .min-w-0{min-width:0}.tw .max-w-\[150px\]{max-width:150px}.tw .max-w-\[105px\]{max-width:105px}.tw .max-w-\[1200px\]{max-width:1200px}.tw .max-w-\[90px\]{max-width:90px}.tw .max-w-\[60px\]{max-width:60px}.tw .max-w-\[120px\]{max-width:120px}.tw .max-w-\[130px\]{max-width:130px}.tw .max-w-\[180px\]{max-width:180px}.tw .max-w-\[145px\]{max-width:145px}.tw .max-w-\[160px\]{max-width:160px}.tw .max-w-\[110px\]{max-width:110px}.tw .max-w-\[95px\]{max-width:95px}.tw .max-w-\[87px\]{max-width:87px}.tw .max-w-\[88px\]{max-width:88px}.tw .max-w-\[80px\]{max-width:80px}.tw .max-w-\[240px\]{max-width:240px}.tw .max-w-\[207px\]{max-width:207px}.tw .max-w-full{max-width:100%}.tw .max-w-\[92px\]{max-width:92px}.tw .max-w-\[90\%\]{max-width:90%}.tw .max-w-\[126px\]{max-width:126px}.tw .max-w-\[76px\]{max-width:76px}.tw .max-w-\[980px\]{max-width:980px}.tw .max-w-\[472px\]{max-width:472px}.tw .max-w-\[200px\]{max-width:200px}.tw .max-w-\[1300px\]{max-width:1300px}.tw .max-w-\[50px\]{max-width:50px}.tw .max-w-\[55px\]{max-width:55px}.tw .max-w-\[66px\]{max-width:66px}.tw .max-w-\[100px\]{max-width:100px}.tw .max-w-\[115px\]{max-width:115px}.tw .max-w-\[135px\]{max-width:135px}.tw .max-w-\[140px\]{max-width:140px}.tw .max-w-\[260px\]{max-width:260px}.tw .max-w-\[88\%\]{max-width:88%}.tw .max-w-\[116\]{max-width:116}.tw .max-w-\[80\%\]{max-width:80%}.tw .max-w-\[104px\]{max-width:104px}.tw .max-w-\[85\%\]{max-width:85%}.tw .max-w-\[300px\]{max-width:300px}.tw .max-w-\[185px\]{max-width:185px}.tw .max-w-\[85px\]{max-width:85px}.tw .max-w-\[72px\]{max-width:72px}.tw .max-w-\[385px\]{max-width:385px}.tw .max-w-\[999px\]{max-width:999px}.tw .max-w-\[1000px\]{max-width:1000px}.tw .flex-1{flex:1 1 0%}.tw .flex-auto{flex:1 1 auto}.tw .flex-initial{flex:0 1 auto}.tw .flex-none{flex:none}.tw .flex-shrink-0{flex-shrink:0}.tw .flex-shrink,.tw .shrink{flex-shrink:1}.tw .shrink-0{flex-shrink:0}.tw .flex-grow,.tw .grow{flex-grow:1}.tw .translate-x-\[5px\]{--tw-translate-x:5px;transform:var(--tw-transform)}.tw .-translate-x-1\/2{--tw-translate-x:-50%;transform:var(--tw-transform)}.tw .-translate-y-1\/2{--tw-translate-y:-50%;transform:var(--tw-transform)}.tw .skew-x-\[-15deg\]{--tw-skew-x:-15deg;transform:var(--tw-transform)}.tw .scale-\[0\.70\]{--tw-scale-x:0.70;--tw-scale-y:0.70;transform:var(--tw-transform)}.tw .scale-x-\[-1\]{--tw-scale-x:-1;transform:var(--tw-transform)}.tw .scale-y-\[1\]{--tw-scale-y:1}.tw .scale-y-\[1\],.tw .transform{transform:var(--tw-transform)}@keyframes spin{to{transform:rotate(1turn)}}.tw .animate-spin{animation:spin 1s linear infinite}@keyframes pulse{50%{opacity:.5}}.tw .animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}.tw .cursor-default{cursor:default}.tw .cursor-pointer{cursor:pointer}.tw .resize{resize:both}.tw .list-disc{list-style-type:disc}.tw .appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.tw .grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.tw .flex-row{flex-direction:row}.tw .flex-row-reverse{flex-direction:row-reverse}.tw .flex-col{flex-direction:column}.tw .flex-col-reverse{flex-direction:column-reverse}.tw .flex-wrap{flex-wrap:wrap}.tw .flex-wrap-reverse{flex-wrap:wrap-reverse}.tw .flex-nowrap{flex-wrap:nowrap}.tw .place-items-center{place-items:center}.tw .content-center{align-content:center}.tw .content-start{align-content:flex-start}.tw .content-end{align-content:flex-end}.tw .content-between{align-content:space-between}.tw .content-around{align-content:space-around}.tw .content-evenly{align-content:space-evenly}.tw .items-start{align-items:flex-start}.tw .items-end{align-items:flex-end}.tw .\!items-end{align-items:flex-end!important}.tw .items-center{align-items:center}.tw .items-baseline{align-items:baseline}.tw .items-stretch{align-items:stretch}.tw .\!justify-start{justify-content:flex-start!important}.tw .justify-start{justify-content:flex-start}.tw .justify-end{justify-content:flex-end}.tw .justify-center{justify-content:center}.tw .justify-between{justify-content:space-between}.tw .justify-around{justify-content:space-around}.tw .justify-evenly{justify-content:space-evenly}.tw .justify-items-center{justify-items:center}.tw .gap-2{gap:16px}.tw .gap-0{gap:0}.tw .gap-\[40px\]{gap:40px}.tw .gap-\[20px\]{gap:20px}.tw .gap-1{gap:8px}.tw .gap-0\.5{gap:4px}.tw .gap-\[10px\]{gap:10px}.tw .gap-3{gap:24px}.tw .gap-\[12px\]{gap:12px}.tw .gap-0\.25{gap:2px}.tw .gap-x-2{-moz-column-gap:16px;column-gap:16px}.tw .gap-y-0\.5{row-gap:4px}.tw .gap-y-0{row-gap:0}.tw .gap-x-0{-moz-column-gap:0;column-gap:0}.tw .gap-x-1{-moz-column-gap:8px;column-gap:8px}.tw .gap-x-4{-moz-column-gap:32px;column-gap:32px}.tw .gap-x-1\.5{-moz-column-gap:12px;column-gap:12px}.tw .gap-x-0\.5{-moz-column-gap:4px;column-gap:4px}.tw .gap-x-\[28px\]{-moz-column-gap:28px;column-gap:28px}.tw .gap-y-\[2px\]{row-gap:2px}.tw .gap-x-6{-moz-column-gap:48px;column-gap:48px}.tw .gap-x-3{-moz-column-gap:24px;column-gap:24px}.tw .gap-y-0\.75{row-gap:6px}.tw .gap-x-0\.75{-moz-column-gap:6px;column-gap:6px}.tw .gap-y-\[1px\]{row-gap:1px}.tw .gap-y-\[3px\]{row-gap:3px}.tw .gap-y-\[4px\]{row-gap:4px}.tw .gap-y-1,.tw .gap-y-\[8px\]{row-gap:8px}.tw .self-start{align-self:flex-start}.tw .self-end{align-self:flex-end}.tw .self-center{align-self:center}.tw .overflow-auto{overflow:auto}.tw .overflow-hidden,.tw .truncate{overflow:hidden}.tw .truncate{text-overflow:ellipsis}.tw .truncate,.tw .whitespace-nowrap{white-space:nowrap}.tw .break-words{overflow-wrap:break-word}.tw .rounded,.tw .rounded-\[4px\]{border-radius:4px}.tw .rounded-full{border-radius:9999px}.tw .rounded-sm{border-radius:3px}.tw .rounded-\[50\%\]{border-radius:50%}.tw .rounded-md{border-radius:6px}.tw .rounded-xs{border-radius:2px}.tw .rounded-bl-\[4px\]{border-bottom-left-radius:4px}.tw .border{border-width:1px}.tw .border-2{border-width:2px}.tw .border-\[12px\]{border-width:12px}.tw .border-4{border-width:4px}.tw .border-t{border-top-width:1px}.tw .border-l-\[21px\]{border-left-width:21px}.tw .border-b{border-bottom-width:1px}.tw .border-dotted{border-style:dotted}.tw .border-gray-400{--tw-border-opacity:1;border-color:rgb(204 204 204/var(--tw-border-opacity))}.tw .border-neutral-200{--tw-border-opacity:1;border-color:rgb(229 229 229/var(--tw-border-opacity))}.tw .border-\[\#c4c4c4\]{--tw-border-opacity:1;border-color:rgb(196 196 196/var(--tw-border-opacity))}.tw .border-red-300{--tw-border-opacity:1;border-color:rgb(204 12 57/var(--tw-border-opacity))}.tw .border-gray-800{--tw-border-opacity:1;border-color:rgb(136 140 140/var(--tw-border-opacity))}.tw .border-transparent{border-color:transparent}.tw .border-rose-400{--tw-border-opacity:1;border-color:rgb(251 113 133/var(--tw-border-opacity))}.tw .border-gray-500{--tw-border-opacity:1;border-color:rgb(221 221 221/var(--tw-border-opacity))}.tw .border-l-\[\#c5c5c5\]{--tw-border-opacity:1;border-left-color:rgb(197 197 197/var(--tw-border-opacity))}.tw .bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity))}.tw .bg-zinc-100{--tw-bg-opacity:1;background-color:rgb(244 244 245/var(--tw-bg-opacity))}.tw .bg-black-700{--tw-bg-opacity:1;background-color:rgb(17 17 17/var(--tw-bg-opacity))}.tw .bg-\[\#879596\]{--tw-bg-opacity:1;background-color:rgb(135 149 150/var(--tw-bg-opacity))}.tw .bg-orange-500{--tw-bg-opacity:1;background-color:rgb(229 123 0/var(--tw-bg-opacity))}.tw .bg-cyan-300{--tw-bg-opacity:1;background-color:rgb(145 246 254/var(--tw-bg-opacity))}.tw .bg-red-300{--tw-bg-opacity:1;background-color:rgb(204 12 57/var(--tw-bg-opacity))}.tw .bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231/var(--tw-bg-opacity))}.tw .bg-\[\#CC0C39\]{--tw-bg-opacity:1;background-color:rgb(204 12 57/var(--tw-bg-opacity))}.tw .bg-white\/\[0\.8\]{background-color:hsla(0,0%,100%,.8)}.tw .bg-gray-500{--tw-bg-opacity:1;background-color:rgb(221 221 221/var(--tw-bg-opacity))}.tw .bg-neutral-100{--tw-bg-opacity:1;background-color:rgb(245 245 245/var(--tw-bg-opacity))}.tw .bg-neutral-300{--tw-bg-opacity:1;background-color:rgb(212 212 212/var(--tw-bg-opacity))}.tw .bg-zinc-400{--tw-bg-opacity:1;background-color:rgb(161 161 170/var(--tw-bg-opacity))}.tw .bg-\[\#000\]{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity))}.tw .bg-gray-900\/40{background-color:rgba(17,24,39,.4)}.tw .bg-green-400{--tw-bg-opacity:1;background-color:rgb(127 218 105/var(--tw-bg-opacity))}.tw .bg-coral{--tw-bg-opacity:1;background-color:rgb(254 135 116/var(--tw-bg-opacity))}.tw .object-contain{-o-object-fit:contain;object-fit:contain}.tw .object-cover{-o-object-fit:cover;object-fit:cover}.tw .p-0{padding:0}.tw .p-0\.5{padding:4px}.tw .p-1{padding:8px}.tw .p-\[6px\]{padding:6px}.tw .p-2{padding:16px}.tw .p-4{padding:32px}.tw .p-0\.25{padding:2px}.tw .p-1\.5,.tw .p-\[12px\]{padding:12px}.tw .p-\[3px\]{padding:3px}.tw .p-3{padding:24px}.tw .p-6{padding:48px}.tw .p-\[30px\]{padding:30px}.tw .p-\[20px\]{padding:20px}.tw .p-\[10px\]{padding:10px}.tw .py-0\.5{padding-bottom:4px;padding-top:4px}.tw .px-1{padding-left:8px;padding-right:8px}.tw .py-0{padding-bottom:0;padding-top:0}.tw .px-2{padding-left:16px;padding-right:16px}.tw .py-0\.25{padding-bottom:2px;padding-top:2px}.tw .px-0\.75{padding-left:6px;padding-right:6px}.tw .px-0{padding-left:0;padding-right:0}.tw .py-\[12px\]{padding-bottom:12px;padding-top:12px}.tw .px-0\.5{padding-left:4px;padding-right:4px}.tw .py-1,.tw .py-\[8px\]{padding-bottom:8px;padding-top:8px}.tw .py-\[6px\]{padding-bottom:6px;padding-top:6px}.tw .px-3{padding-left:24px;padding-right:24px}.tw .py-2{padding-bottom:16px;padding-top:16px}.tw .px-\[6px\]{padding-left:6px;padding-right:6px}.tw .py-\[4px\]{padding-bottom:4px;padding-top:4px}.tw .py-\[10px\]{padding-bottom:10px;padding-top:10px}.tw .px-1\.5,.tw .px-\[12px\]{padding-left:12px;padding-right:12px}.tw .px-4{padding-left:32px;padding-right:32px}.tw .px-7{padding-left:56px;padding-right:56px}.tw .px-5{padding-left:40px;padding-right:40px}.tw .py-1\.5{padding-bottom:12px;padding-top:12px}.tw .px-\[3px\]{padding-left:3px;padding-right:3px}.tw .px-\[11px\]{padding-left:11px;padding-right:11px}.tw .py-\[2px\]{padding-bottom:2px;padding-top:2px}.tw .px-0\.25{padding-left:2px;padding-right:2px}.tw .pr-2{padding-right:16px}.tw .pb-\[3px\]{padding-bottom:3px}.tw .pl-0\.5{padding-left:4px}.tw .pr-0\.5{padding-right:4px}.tw .pl-0{padding-left:0}.tw .pr-0{padding-right:0}.tw .pr-1{padding-right:8px}.tw .pb-1{padding-bottom:8px}.tw .pt-0\.25{padding-top:2px}.tw .pt-0{padding-top:0}.tw .pl-3{padding-left:24px}.tw .pl-1{padding-left:8px}.tw .pl-2{padding-left:16px}.tw .pb-0{padding-bottom:0}.tw .pt-1\.5{padding-top:12px}.tw .pt-1{padding-top:8px}.tw .pb-0\.5{padding-bottom:4px}.tw .pb-\[1px\]{padding-bottom:1px}.tw .pl-4{padding-left:32px}.tw .pt-\[25px\]{padding-top:25px}.tw .pt-0\.5{padding-top:4px}.tw .pb-0\.25{padding-bottom:2px}.tw .pt-2{padding-top:16px}.tw .pl-\[28px\]{padding-left:28px}.tw .pt-\[12px\]{padding-top:12px}.tw .pb-\[20px\]{padding-bottom:20px}.tw .pt-\[20px\]{padding-top:20px}.tw .pr-\[20px\]{padding-right:20px}.tw .pr-\[18px\]{padding-right:18px}.tw .pl-0\.75{padding-left:6px}.tw .pr-0\.75{padding-right:6px}.tw .pb-0\.75{padding-bottom:6px}.tw .pt-\[3px\]{padding-top:3px}.tw .pt-\[2px\]{padding-top:2px}.tw .pb-\[5px\]{padding-bottom:5px}.tw .pb-1\.5{padding-bottom:12px}.tw .pb-2{padding-bottom:16px}.tw .pb-\[39px\]{padding-bottom:39px}.tw .pl-6{padding-left:48px}.tw .pr-3{padding-right:24px}.tw .pr-9{padding-right:72px}.tw .pr-5{padding-right:40px}.tw .pb-\[10px\]{padding-bottom:10px}.tw .pb-\[15px\]{padding-bottom:15px}.tw .pb-\[30px\]{padding-bottom:30px}.tw .pr-\[5px\]{padding-right:5px}.tw .pt-\[4px\]{padding-top:4px}.tw .pb-\[4px\]{padding-bottom:4px}.tw .pl-\[10px\]{padding-left:10px}.tw .pl-\[6px\]{padding-left:6px}.tw .pt-\[1px\]{padding-top:1px}.tw .pr-\[10px\]{padding-right:10px}.tw .pb-\[2px\]{padding-bottom:2px}.tw .pr-0\.25{padding-right:2px}.tw .pl-\[1px\]{padding-left:1px}.tw .pl-\[19px\]{padding-left:19px}.tw .pl-\[4px\]{padding-left:4px}.tw .pr-\[2px\]{padding-right:2px}.tw .pb-5{padding-bottom:40px}.tw .text-left{text-align:left}.tw .text-center{text-align:center}.tw .align-baseline{vertical-align:baseline}.tw .align-top{vertical-align:top}.tw .align-middle{vertical-align:middle}.tw .align-text-top{vertical-align:text-top}.tw .align-super{vertical-align:super}.tw .text-\[11px\]{font-size:11px}.tw .text-\[18px\]{font-size:18px}.tw .text-md{font-size:14px;line-height:1.4}.tw .text-\[9px\]{font-size:9px}.tw .text-heading{font-size:16px;line-height:19px}.tw .text-base{font-size:13px;line-height:1.35}.tw .text-\[22px\]{font-size:22px}.tw .text-xs{font-size:11px;line-height:1}.tw .text-\[16px\]{font-size:16px}.tw .text-\[14px\]{font-size:14px}.tw .text-\[10px\]{font-size:10px}.tw .text-lg{font-size:18px;line-height:24px}.tw .text-xl{font-size:20px;line-height:1.3}.tw .text-\[32px\]{font-size:32px}.tw .text-\[24px\]{font-size:24px}.tw .text-\[13px\]{font-size:13px}.tw .text-xxs{font-size:9px;line-height:1}.tw .text-\[15px\]{font-size:15px}.tw .text-\[12px\]{font-size:12px}.tw .text-\[20px\]{font-size:20px}.tw .text-\[8px\]{font-size:8px}.tw .text-\[\.85em\]{font-size:.85em}.tw .text-\[\.7em\]{font-size:.7em}.tw .text-sm{font-size:12px;line-height:1.2}.tw .text-superscript{font-size:.6em;line-height:1.1}.tw .text-\[38px\]{font-size:38px}.tw .text-xxl{font-size:24px;line-height:1.3}.tw .text-sm2{font-size:13px;line-height:18px}.tw .text-md2{font-size:15px;line-height:20px}.tw .text-\[0\.85em\]{font-size:.85em}.tw .text-\[0\.60em\]{font-size:.6em}.tw .text-\[0\.75em\]{font-size:.75em}.tw .text-\[21px\]{font-size:21px}.tw .font-normal{font-weight:400}.tw .font-bold{font-weight:700}.tw .font-light{font-weight:300}.tw .\!font-normal{font-weight:400!important}.tw .font-medium{font-weight:500}.tw .font-black{font-weight:900}.tw .font-thin{font-weight:100}.tw .uppercase{text-transform:uppercase}.tw .lowercase{text-transform:lowercase}.tw .italic{font-style:italic}.tw .\!italic{font-style:italic!important}.tw .leading-tight{line-height:1.25}.tw .leading-\[18px\]{line-height:18px}.tw .leading-\[22px\]{line-height:22px}.tw .leading-\[11px\]{line-height:11px}.tw .leading-\[24px\]{line-height:24px}.tw .leading-\[13px\]{line-height:13px}.tw .leading-\[20px\]{line-height:20px}.tw .leading-4{line-height:1rem}.tw .leading-\[16px\]{line-height:16px}.tw .leading-\[38px\]{line-height:38px}.tw .leading-\[31px\]{line-height:31px}.tw .leading-\[12px\]{line-height:12px}.tw .leading-\[1\.2\]{line-height:1.2}.tw .leading-\[1\.4\]{line-height:1.4}.tw .leading-\[19px\]{line-height:19px}.tw .leading-\[14px\]{line-height:14px}.tw .leading-\[28px\]{line-height:28px}.tw .leading-\[32px\]{line-height:32px}.tw .leading-\[10px\]{line-height:10px}.tw .leading-8{line-height:2rem}.tw .leading-\[15px\]{line-height:15px}.tw .leading-\[30px\]{line-height:30px}.tw .leading-\[25px\]{line-height:25px}.tw .leading-\[37px\]{line-height:37px}.tw .leading-\[27px\]{line-height:27px}.tw .leading-\[1\]{line-height:1}.tw .leading-\[0\]{line-height:0}.tw .leading-\[21px\]{line-height:21px}.tw .\!leading-none{line-height:1!important}.tw .text-gray-700{--tw-text-opacity:1;color:rgb(51 51 51/var(--tw-text-opacity))}.tw .\!text-gray-700{--tw-text-opacity:1!important;color:rgb(51 51 51/var(--tw-text-opacity))!important}.tw .text-black-700{--tw-text-opacity:1;color:rgb(17 17 17/var(--tw-text-opacity))}.tw .text-red-500{--tw-text-opacity:1;color:rgb(177 39 4/var(--tw-text-opacity))}.tw .text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.tw .text-slate-800{--tw-text-opacity:1;color:rgb(35 47 62/var(--tw-text-opacity))}.tw .text-\[\#007185\]{--tw-text-opacity:1;color:rgb(0 113 133/var(--tw-text-opacity))}.tw .text-red-700{--tw-text-opacity:1;color:rgb(186 9 51/var(--tw-text-opacity))}.tw .text-gray-600{--tw-text-opacity:1;color:rgb(85 85 85/var(--tw-text-opacity))}.tw .text-red-800{--tw-text-opacity:1;color:rgb(152 32 48/var(--tw-text-opacity))}.tw .text-blue-400{--tw-text-opacity:1;color:rgb(31 123 163/var(--tw-text-opacity))}.tw .text-blue-500{--tw-text-opacity:1;color:rgb(0 102 192/var(--tw-text-opacity))}.tw .text-red-300{--tw-text-opacity:1;color:rgb(204 12 57/var(--tw-text-opacity))}.tw .text-red-400{--tw-text-opacity:1;color:rgb(177 78 48/var(--tw-text-opacity))}.tw .text-orange-600{--tw-text-opacity:1;color:rgb(189 88 0/var(--tw-text-opacity))}.tw .text-gray-650{--tw-text-opacity:1;color:rgb(86 89 89/var(--tw-text-opacity))}.tw .text-gray-400{--tw-text-opacity:1;color:rgb(204 204 204/var(--tw-text-opacity))}.tw .text-gray-100{--tw-text-opacity:1;color:rgb(15 17 17/var(--tw-text-opacity))}.tw .text-slate-400{--tw-text-opacity:1;color:rgb(92 104 124/var(--tw-text-opacity))}.tw .text-green-400{--tw-text-opacity:1;color:rgb(127 218 105/var(--tw-text-opacity))}.tw .text-green-500{--tw-text-opacity:1;color:rgb(0 138 0/var(--tw-text-opacity))}.tw .text-inherit{color:inherit}.tw .text-blue-600{--tw-text-opacity:1;color:rgb(7 42 165/var(--tw-text-opacity))}.tw .text-green-600{--tw-text-opacity:1;color:rgb(6 125 98/var(--tw-text-opacity))}.tw .text-\[\#3E3E3E\]{--tw-text-opacity:1;color:rgb(62 62 62/var(--tw-text-opacity))}.tw .underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.tw .line-through{-webkit-text-decoration-line:line-through;text-decoration-line:line-through}.tw .opacity-0{opacity:0}.tw .opacity-5{opacity:.05}.tw .opacity-25{opacity:.25}.tw .opacity-75{opacity:.75}.tw .opacity-\[0\.07\]{opacity:.07}.tw .opacity-\[0\.03\]{opacity:.03}.tw .shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.tw .shadow,.tw .shadow-md{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.tw .shadow-md{--tw-shadow:0px -3px 5px 2px rgba(0,0,0,.06);--tw-shadow-colored:0px -3px 5px 2px var(--tw-shadow-color)}.tw .shadow-sm1-light{--tw-shadow:0 1px 3px rgba(0,0,0,.2);--tw-shadow-colored:0 1px 3px var(--tw-shadow-color)}.tw .shadow-adchoices,.tw .shadow-sm1-light{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.tw .shadow-adchoices{--tw-shadow:0 0 5px rgba(0,0,0,.1);--tw-shadow-colored:0 0 5px var(--tw-shadow-color)}.tw .shadow-sm3{--tw-shadow:0px 1px 4px rgba(35,47,63,.15),0px 0px 2px rgba(35,47,63,.3);--tw-shadow-colored:0px 1px 4px var(--tw-shadow-color),0px 0px 2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.tw .outline{outline-style:solid}.tw .blur{--tw-blur:blur(8px)}.tw .blur,.tw .filter{filter:var(--tw-filter)}.tw .transition{transition-duration:.15s;transition-property:color,background-color,border-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-text-decoration-color,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-text-decoration-color,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1)}.tw .ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.tw .content-\[\'\'\]{--tw-content:"";content:var(--tw-content)}.tw .line-clamp-1{-webkit-line-clamp:1}.tw .line-clamp-1,.tw .line-clamp-2{-webkit-box-orient:vertical;display:-webkit-box;overflow:hidden}.tw .line-clamp-2{-webkit-line-clamp:2}.tw .line-clamp-3{-webkit-line-clamp:3}.tw .line-clamp-3,.tw .line-clamp-4{-webkit-box-orient:vertical;display:-webkit-box;overflow:hidden}.tw .line-clamp-4{-webkit-line-clamp:4}.tw .line-clamp-5{-webkit-line-clamp:5}.tw .line-clamp-5,.tw .line-clamp-6{-webkit-box-orient:vertical;display:-webkit-box;overflow:hidden}.tw .line-clamp-6{-webkit-line-clamp:6}.tw .line-clamp-none{-webkit-line-clamp:unset}.tw .tw-clip-diagonal{-webkit-clip-path:polygon(25% 0,100% 0,75% 100%,0 100%);clip-path:polygon(25% 0,100% 0,75% 100%,0 100%)}.tw .custom-image{height:auto;margin-left:10%;width:80%}.tw .tw-rounded-sides{-webkit-clip-path:ellipse(50% 90%);clip-path:ellipse(50% 90%)}.tw .tw-clip-triangle{-webkit-clip-path:polygon(0 0,0 100%,100% 100%,100% 67%,90% 50%,100% 33%,100% 0);clip-path:polygon(0 0,0 100%,100% 100%,100% 67%,90% 50%,100% 33%,100% 0)}.tw .gradient-background{background:linear-gradient(270deg,hsla(0,0%,80%,.5) 1%,hsla(0,0%,85%,0) 11.82%)}.tw .tw-clip-diagonal-half{-webkit-clip-path:polygon(100% 0,100% 70%,0 100%,0 0);clip-path:polygon(100% 0,100% 70%,0 100%,0 0)}.tw .tw-clip-diagonal-skyscrapper{-webkit-clip-path:polygon(190% 0,100% 57%,0 76%,0 39%);clip-path:polygon(190% 0,100% 57%,0 76%,0 39%)}.tw .tw-clip-diagonal-custom-image{-webkit-clip-path:polygon(100% 0,100% 80%,0 100%,0 20%);clip-path:polygon(100% 0,100% 80%,0 100%,0 20%)}.tw .tw-clip-diagonal-product-image{-webkit-clip-path:polygon(100% 0,100% 66%,0 100%,0 34%);clip-path:polygon(100% 0,100% 66%,0 100%,0 34%)}.\[visibility\:inherit\]{visibility:inherit}.tw .hover\:text-gray-900:hover{--tw-text-opacity:1;color:rgb(17 24 39/var(--tw-text-opacity))}.tw .focus\:border-blue-700:focus{--tw-border-opacity:1;border-color:rgb(0 113 133/var(--tw-border-opacity))}.tw .focus\:bg-blue-100:focus{--tw-bg-opacity:1;background-color:rgb(247 254 255/var(--tw-bg-opacity))}.tw .focus\:shadow-md2:focus{--tw-shadow:0 0 0 3px rgba(15,17,17,.15);--tw-shadow-colored:0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.tw .focus\:shadow-red-100:focus{--tw-shadow-color:#ffe3e3;--tw-shadow:var(--tw-shadow-colored)}.tw .focus\:shadow-blue-200:focus{--tw-shadow-color:#c8f3fa;--tw-shadow:var(--tw-shadow-colored)}.tw .focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.tw .dark .dark\:bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity))}.tw .dark .dark\:bg-black-800{--tw-bg-opacity:1;background-color:rgb(48 51 51/var(--tw-bg-opacity))}.tw .dark .dark\:bg-\[linear-gradient\(to_right\2c \#E3E6E6\2c \#303333\)\]{background-image:linear-gradient(90deg,#e3e6e6,#303333)}.tw .dark .dark\:text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.tw .dark .dark\:text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity))}@media (min-width:260px){.tw .b-w-xs\:flex{display:flex}}@media (min-width:340px){.tw .b-w-sm\:flex{display:flex}}@media (min-width:540px){.tw .b-w-md\:fixed{position:fixed}.tw .b-w-md\:m-1{margin:8px}.tw .b-w-md\:ml-\[35\%\]{margin-left:35%}.tw .b-w-md\:flex{display:flex}.tw .b-w-md\:h-\[77vh\]{height:77vh}.tw .b-w-md\:max-w-\[33\%\]{max-width:33%}.tw .b-w-md\:max-w-\[64\%\]{max-width:64%}.tw .b-w-md\:justify-between{justify-content:space-between}.tw .b-w-md\:gap-2{gap:16px}.tw .b-w-md\:gap-x-4{-moz-column-gap:32px;column-gap:32px}.tw .b-w-md\:p-1{padding:8px}}@media (min-width:620px){.tw .b-w-mid\:mx-2{margin-left:16px;margin-right:16px}.tw .b-w-mid\:px-2{padding-left:16px;padding-right:16px}.tw .b-w-mid\:pt-1{padding-top:8px}.tw .b-w-mid\:pb-1{padding-bottom:8px}}@media (min-width:375px){.tw .r-w-md\:flex{display:flex}}</style>
+ 
+
+
+
+<script>
+ var PerformanceEventManager;(()=>{"use strict";var e={};(()=>{var t=e;Object.defineProperty(t,"__esModule",{value:!0}),t.default=t.VISUAL_COMPLETENESS_LATENCY=t.UNCAUGHT_ERROR=t.CREATIVE_LOAD_LATENCY=void 0;const r="uncaughtError";t.UNCAUGHT_ERROR=r;const n="creativeLoadLatency";t.CREATIVE_LOAD_LATENCY=n;const s="visualCompletenessLatency";t.VISUAL_COMPLETENESS_LATENCY=s,t.default=class{constructor(e){if(this.events={uncaughtError:{}},this.timers={},this.onNewError=()=>{},this.window=e&&e.window||"undefined"!=typeof window&&window,!this.window||!this.window.document)throw new Error("Window and/or document is not defined");this.trackLoadLatency(),this.trackVisualCompletenessLatency(),this.addErrorListener()}trackLoadLatency(){this.timers[n]=new Date}trackVisualCompletenessLatency(){this.timers[s]=new Date}addErrorListener(){const e=this.events[r];this.addListener(this.window,"error",(t=>{let r=t.message;if(t.error&&t.error.stack){const e=t.message+" : "+t.error.stack;r=e.length<500?e:e.substring(0,500)}void 0===e[r]&&(e[r]=!0,this.onNewError(r))}))}addListener(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];function n(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:window.event;return o(e)}const s=t[0],a=t[1],o=t[2];if(s.addEventListener)s.addEventListener(a,n,!0);else{var i="on"+a;if(s.attachEvent)s.attachEvent(i,n);else{const e=s[i];s[i]=()=>{n.apply(this,...t),"function"==typeof e&&e.apply(this,...t)}}}}}})(),PerformanceEventManager=e})();;
+ var performanceEventManager = new PerformanceEventManager.default();
+ 
+</script>
+<div id="ad" data-html-dimensions="728x90"><div style="width:100%;height:100%;opacity:1" class=""><div style="width:100%;height:100%" data-testid="app-layout-container" data-has-hydrated="true" class="tw"><div data-testid="gridContainer" class="layout-container flex items-center overflow-hidden relative bg-white w-full h-full border-gray-400 border justify-center dark:bg-black-800"><div class="adchoices-container z-30 absolute top-0 right-0"><a href="https://adinfo.amazon.com/?pl=%7B%22version%22%3A%221.0.0%22%2C%22client%22%3A%22IMDB%22%2C%22lop%22%3A%22es_ES%22%2C%22placementMetaData%22%3A%7B%22pageType%22%3A%22%22%2C%22pageUrl%22%3A%22imdb.com%22%2C%22slotName%22%3A%22inline20_728x90%22%7D%2C%22creativeMetaData%22%3A%7B%22adProgramId%22%3A%221027%22%2C%22adElementId%22%3A%22%22%2C%22creativeDetailsList%22%3A%5B%7B%22campaignId%22%3A%22300008943264336%22%2C%22adId%22%3A%22300151513172432%22%2C%22creativeId%22%3A%22%22%2C%22campaignIdNS%22%3A%22%22%2C%22selectionSignals%22%3A%7B%22version%22%3A1%2C%22context%22%3Atrue%2C%22location%22%3Atrue%2C%22pastActivity%22%3A%22NONE%22%7D%2C%22advertiserInfo%22%3A%7B%22advertiserIdNS%22%3A%22axiom.A1RKKUPIHCS9HS.A3TQKF00BDYQVY%22%7D%7D%5D%7D%2C%22marketPlaceMetaData%22%3A%7B%22obfuscatedMarketPlaceId%22%3A%22%22%2C%22marketPlaceCode%22%3A%22%22%7D%7D" data-testid="adchoicesLink" target="_blank" rel="noreferrer"><div class="shadow-adchoices pl-[4px] pr-[2px] leading-[0] rounded-bl-[4px] py-[4px] bg-white"><img data-testid="adchoicesIcon" src="./ad-choice.svg" width="12" height="12" alt="Ad Choice Icon" class="inline-block"></div></a></div><div class="h-full relative w-full" data-testid="gridWrapper" style="direction:ltr"><div data-region-type="trigger" class="h-full"><div data-testid="gridRegion" class="w-full h-full border-gray-400"><div data-testid="adLink" class="focus-outline" id="adLink"><a style="background:transparent url(&quot;https://m.media-amazon.com/images/G/01/d16g/kpw/transparent-1x1.png&quot;) repeat 0 0;bottom:0;cursor:pointer;left:0;position:absolute;right:0;top:0;z-index:20" role="link" aria-label="Anuncio patrocinado. LQWELL Luces de antorcha solar para exteriores, 8 piezas, 12 LED, lámpara solar con efecto de llama, IP65, impermeable, jardín, camino solar, iluminación de césped para patio trasero (paquete de 8). Haz clic para ver este producto en Amazon." href="https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/http://www.amazon.es/sspa/click?ie=UTF8&amp;spc=MToxMDkxOTE2MTU4Nzg1NzAyNzA6MTcyNzQzNDE4ODpzZF9vZmZzaXRlX2Rlc2t0b3A6MzAwMTUxNTEzMTcyNDMyOjo6Og&amp;url=%2Fdp%2FB0CBJCSHGW%2Fref%3Dsyn_sd_offsite_desktop_50%3Fie%3DUTF8%26psc%3D1%26aref%3DcRyTbHUSz5%26sp_csd%3Dd2lkZ2V0TmFtZT1zZF9vZmZzaXRlX2Rlc2t0b3A%26tag%3Ddradisplay09-21&amp;tag=dradisplay09-21" target="_blank"></a></div><div data-testid="" data-identifier="hl-lo" data-current-screen="banner-md" class="grid w-full h-full items-center" style="grid-template-areas:&#39;logo-image product-image buy-box&#39;;grid-template-columns:25% 25% 1fr;grid-template-rows:auto"><div class="grid-logo-image flex min-h-0 h-full items-center justify-center"><div data-testid="logoFrame" class="flex min-h-0 h-full items-center justify-center"><div aria-hidden="true" class="min-w-0 min-h-0 relative w-full h-full"><picture class="flex h-full w-full justify-center items-center"><source type="image/webp" data-testid="lowResWebpSource" srcset=" https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL10_SX728_SY90_FMwebp_.png 1x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL10_SX1456_SY180_FMwebp_.png 2x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL10_SX2184_SY270_FMwebp_.png 3x,"><source type="image/jpeg" data-testid="lowResJpegSource" srcset=" https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL10_SX728_SY90_.png 1x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL10_SX1456_SY180_.png 2x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL10_SX2184_SY270_.png 3x,"><img class="min-w-0 min-h-0 w-full h-full max-w-[90px] max-h-[90px] py-0.5 px-1 object-contain" style="background-color:transparent" loading="eager" alt="Logo" data-testid="pictureLowQuality" src="./9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_SX2184_SY270_.png 3x,"></picture><picture data-testid="logoImage" data-image-type="static" class="flex left-0 right-0 absolute top-0 bottom-0 justify-center items-center"><source type="image/webp" data-testid="webpSource" srcset=" https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL95_SX728_SY90_FMwebp_.png 1x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL95_SX1456_SY180_FMwebp_.png 2x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL95_SX2184_SY270_FMwebp_.png 3x,"><source type="image/jpeg" data-testid="jpegSource" srcset=" https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL95_SX728_SY90_.png 1x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL95_SX1456_SY180_.png 2x, https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_QL95_SX2184_SY270_.png 3x,"><img class="min-w-0 min-h-0 w-full h-full max-w-[90px] max-h-[90px] py-0.5 px-1 mrc-btr-creative object-contain" style="background-color:transparent" loading="eager" alt="Logo" data-testid="pictureHighQuality" src="./9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_AC_SX2184_SY270_.png 3x,"></picture></div></div></div><div class="grid-product-image flex min-h-0 w-full h-full items-center relative justify-center" data-testid="productImageContainer"><div aria-hidden="true" class="min-w-0 min-h-0 relative w-full h-full"><picture class="flex h-full w-full justify-center items-center"><source type="image/webp" data-testid="lowResWebpSource" srcset=" https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL10_SX728_SY90_FMwebp_.jpg 1x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL10_SX1456_SY180_FMwebp_.jpg 2x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL10_SX2184_SY270_FMwebp_.jpg 3x,"><source type="image/jpeg" data-testid="lowResJpegSource" srcset=" https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL10_SX728_SY90_.jpg 1x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL10_SX1456_SY180_.jpg 2x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL10_SX2184_SY270_.jpg 3x,"><img class="min-w-0 min-h-0 w-full h-full max-w-[110px] max-w-[110px] py-[6px] px-1 object-contain" style="background-color:transparent" loading="eager" alt="LQWELL Luces de antorcha solar para exteriores, 8 piezas, 12 LED, lámpara solar con efecto de llama, IP65, impermeable, jardín, camino solar, iluminación de césped para patio trasero (paquete de 8)" data-testid="pictureLowQuality" src="./71okTP69WPL._AC_SX2184_SY270_.jpg 3x,"></picture><picture data-testid="productImage" data-image-type="static" class="flex left-0 right-0 absolute top-0 bottom-0 justify-center items-center"><source type="image/webp" data-testid="webpSource" srcset=" https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL95_SX728_SY90_FMwebp_.jpg 1x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL95_SX1456_SY180_FMwebp_.jpg 2x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL95_SX2184_SY270_FMwebp_.jpg 3x,"><source type="image/jpeg" data-testid="jpegSource" srcset=" https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL95_SX728_SY90_.jpg 1x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL95_SX1456_SY180_.jpg 2x, https://m.media-amazon.com/images/I/71okTP69WPL._AC_QL95_SX2184_SY270_.jpg 3x,"><img class="min-w-0 min-h-0 w-full h-full max-w-[110px] max-w-[110px] py-[6px] px-1 mrc-btr-creative object-contain" style="background-color:transparent" loading="eager" alt="LQWELL Luces de antorcha solar para exteriores, 8 piezas, 12 LED, lámpara solar con efecto de llama, IP65, impermeable, jardín, camino solar, iluminación de césped para patio trasero (paquete de 8)" data-testid="pictureHighQuality" src="./71okTP69WPL._AC_SX2184_SY270_.jpg 3x,"></picture></div></div><div id="gridRegion-buybox" class="grid-buy-box flex flex-col pr-2 gap-y-0" data-testid="buybox-default"><div><div><span style="word-break:break-word;overflow-wrap:anywhere" data-testid="headline" class="display-inline-box dark:text-white line-clamp-1 inherit font-bold text-md normal">Descubra la luz de antorcha solar de LQWELL®</span></div></div><div><div class="flex flex-col"><div class="flex flex-row flex-wrap items-center gap-0.5 mt-0.25"><span data-testid="rating" class="display-inline-box dark:text-white text-sm text-black-700 whitespace-nowrap inherit">4</span><div class="flex flex-row" aria-label="4 de 5 estrellas."><img data-testid="starFull" aria-hidden="true" aria-label="" src="./star-fullfill.svg" width="15" height="15" class="inline-block"><img data-testid="starFull" aria-hidden="true" aria-label="" src="./star-fullfill.svg" width="15" height="15" class="inline-block"><img data-testid="starFull" aria-hidden="true" aria-label="" src="./star-fullfill.svg" width="15" height="15" class="inline-block"><img data-testid="starFull" aria-hidden="true" aria-label="" src="./star-fullfill.svg" width="15" height="15" class="inline-block"><img data-testid="starEmpty" aria-hidden="true" aria-label="" src="./star-empty.svg" width="15" height="15" class="inline-block"></div><span data-testid="ratingCount" aria-label="118 reseñas de productos." class="display-inline-box dark:text-white text-sm text-gray-600 whitespace-nowrap inherit">118</span></div></div></div><div><div class="flex flex-row flex-wrap items-baseline gap-0.5 gap-y-0 mb-0.25" data-testid="dealprice-stack"><span data-testid="price" class="display-inline-box dark:text-white text-md text-red-500 whitespace-nowrap inherit direction-ltr leading-[1.2]"><span data-testid="price-text" class="display-inline-box dark:text-white text-black-700 inherit text-[24px]"><span data-testid="price-whole" class="display-inline-box dark:text-white text-red-500 inherit align-text-top">27</span><span data-testid="price-decimal" class="display-inline-box dark:text-white text-red-500 inherit align-super pl-[1px] left-[0px] relative text-[12px]">99</span></span><span data-testid="currency" class="display-inline-box dark:text-white text-red-500 inherit align-baseline px-0.25 top-[-7px] left-[0px] relative text-[12px]">€</span></span></div></div></div></div></div></div></div></div></div></div></div>
+<script crossorigin="anonymous" charset="UTF-8" src="./41zL88vnT5L.js.descarga"></script>
+<script>
+ var loggingManager = new LoggingClientManager.default({"shazamId":"S9_DA_creativeId","templateName":"PERC_SD_3P_ES_DESKTOP_LOP","templateMajorVersion":"0","templateMinorVersion":"0","locale":"ES","adServer":"S9_DA","adId":"300151513172432","creativeId":"S9_DA_creativeId","impressionId":"aRHdrgbQiGM2MSv0z.ks6g","sourceId":"202","stage":"prod","renderId":"Q6Lb-yqS5jOwV6BX2sfn-Q","areAllAsinsOutOfStock":false,"requiredElementsForVisualCompleteness":[],"preDefinedUrlsForVisualCompleteness":{},"currentDate":"2024-09-27T10:49:48.980Z"}, performanceEventManager);
+</script>
+
+<script src="./31OyASKbVLL.js.descarga"></script>
+<script src="./71Q5hfLlYnL.js.descarga"></script>
+<script crossorigin="anonymous" charset="UTF-8" src="./911CBUzPfKL.js.descarga"></script>
+<script>
+ var $ad = document.getElementById('ad');
+ ReactDOM.hydrateRoot($ad, React.createElement(Library.default, {"isRTL":false,"isZoetropeDynamicSlot":false,"isShowroomInnovation":false,"locale":"es_ES","delayLoadingHighQualityImage":false,"marketplace":"ES","brandName":"LQWELL","isMobile":false,"is3P":true,"isBorderless":false,"isAdblockPresent":false,"marketplaceData":{"domain":"amazon.es"},"modelData":{"market":"ES","shazamStage":"prod","templateMajorVersion":"0","size":"728x90","templateName":"Dynamic eCommerce_SD_3P_ES_DESKTOP","width":728,"templateMinorVersion":"0","isMobileCornerstoneTemplate":false,"adServer":"S9_DA","properties":{"privacyUrl":"https://adinfo.amazon.com/?pl=%7B%22version%22%3A%221.0.0%22%2C%22client%22%3A%22IMDB%22%2C%22lop%22%3A%22es_ES%22%2C%22placementMetaData%22%3A%7B%22pageType%22%3A%22%22%2C%22pageUrl%22%3A%22imdb.com%22%2C%22slotName%22%3A%22inline20_728x90%22%7D%2C%22creativeMetaData%22%3A%7B%22adProgramId%22%3A%221027%22%2C%22adElementId%22%3A%22%22%2C%22creativeDetailsList%22%3A%5B%7B%22campaignId%22%3A%22300008943264336%22%2C%22adId%22%3A%22300151513172432%22%2C%22creativeId%22%3A%22%22%2C%22campaignIdNS%22%3A%22%22%2C%22selectionSignals%22%3A%7B%22version%22%3A1%2C%22context%22%3Atrue%2C%22location%22%3Atrue%2C%22pastActivity%22%3A%22NONE%22%7D%2C%22advertiserInfo%22%3A%7B%22advertiserIdNS%22%3A%22axiom.A1RKKUPIHCS9HS.A3TQKF00BDYQVY%22%7D%7D%5D%7D%2C%22marketPlaceMetaData%22%3A%7B%22obfuscatedMarketPlaceId%22%3A%22%22%2C%22marketPlaceCode%22%3A%22%22%7D%7D","thirdPartyClickUrls":[""],"productInformation":{"products":[{"productTitle":"product title","reviewUrl":"","asin":"B0CBJCSHGW","reviewText":"","properties":{}}]},"optimizationGoal":"CLICKS","thirdPartyImpressionUrls":[""],"creativeId":"867102673917409230","market":"ES","marketplaceId":"A1RKKUPIHCS9HS","clickThroughUrlOverride":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/http://www.amazon.es/sspa/click?ie=UTF8&spc=MToxMDkxOTE2MTU4Nzg1NzAyNzA6MTcyNzQzNDE4ODpzZF9vZmZzaXRlX2Rlc2t0b3A6MzAwMTUxNTEzMTcyNDMyOjo6Og&url=%2Fdp%2FB0CBJCSHGW%2Fref%3Dsyn_sd_offsite_desktop_50%3Fie%3DUTF8%26psc%3D1%26aref%3DcRyTbHUSz5%26sp_csd%3Dd2lkZ2V0TmFtZT1zZF9vZmZzaXRlX2Rlc2t0b3A%26tag%3Ddradisplay09-21&tag=dradisplay09-21","asins":"[\"B0CBJCSHGW\"]","contentTypeSelected":"brandLogo","allow3pSellers":true,"region":"na","version":1,"headline":"Descubra la luz de antorcha solar de LQWELL®","brandLogo":{"url":"https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_.png"},"squareImages":[],"horizontalImages":[],"verticalImages":[],"squareVideos":[],"horizontalVideos":[],"verticalVideos":[],"disableCaptions":false,"enableHeadlineAndLogoUploader":true,"newContentType":true},"height":90,"shazamId":"S9_DA_creativeId"},"urls":{"brandPageUrl":"","privacyUrl":"https://adinfo.amazon.com/?pl=%7B%22version%22%3A%221.0.0%22%2C%22client%22%3A%22IMDB%22%2C%22lop%22%3A%22es_ES%22%2C%22placementMetaData%22%3A%7B%22pageType%22%3A%22%22%2C%22pageUrl%22%3A%22imdb.com%22%2C%22slotName%22%3A%22inline20_728x90%22%7D%2C%22creativeMetaData%22%3A%7B%22adProgramId%22%3A%221027%22%2C%22adElementId%22%3A%22%22%2C%22creativeDetailsList%22%3A%5B%7B%22campaignId%22%3A%22300008943264336%22%2C%22adId%22%3A%22300151513172432%22%2C%22creativeId%22%3A%22%22%2C%22campaignIdNS%22%3A%22%22%2C%22selectionSignals%22%3A%7B%22version%22%3A1%2C%22context%22%3Atrue%2C%22location%22%3Atrue%2C%22pastActivity%22%3A%22NONE%22%7D%2C%22advertiserInfo%22%3A%7B%22advertiserIdNS%22%3A%22axiom.A1RKKUPIHCS9HS.A3TQKF00BDYQVY%22%7D%7D%5D%7D%2C%22marketPlaceMetaData%22%3A%7B%22obfuscatedMarketPlaceId%22%3A%22%22%2C%22marketPlaceCode%22%3A%22%22%7D%7D","detailPageUrl":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/http://www.amazon.es/sspa/click?ie=UTF8&spc=MToxMDkxOTE2MTU4Nzg1NzAyNzA6MTcyNzQzNDE4ODpzZF9vZmZzaXRlX2Rlc2t0b3A6MzAwMTUxNTEzMTcyNDMyOjo6Og&url=%2Fdp%2FB0CBJCSHGW%2Fref%3Dsyn_sd_offsite_desktop_50%3Fie%3DUTF8%26psc%3D1%26aref%3DcRyTbHUSz5%26sp_csd%3Dd2lkZ2V0TmFtZT1zZF9vZmZzaXRlX2Rlc2t0b3A%26tag%3Ddradisplay09-21&tag=dradisplay09-21","rawDetailPageUrl":"https://www.amazon.es/dp/B0CBJCSHGW","checkoutPageUrl":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/https://www.amazon.es/gp/checkoutportal/enter-checkout.html/ref=dp_mw_buy_now?asin=B0CBJCSHGW&buyNow=1&quantity=1","addToCartPageUrl":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/https://www.amazon.es/advertising/atc?ie=UTF8&token=23016BF5DF6E4D63B8CB1F7FFBA1790F8050E3B6&time=1727432748066&merchantId=A3TQKF00BDYQVY&asin=B0CBJCSHGW&program=dads&adPrice=27.99&offerListingId=XGCZzek3n%252FSbVLlgKlsamilPUVlvNmfzuKJ2q2XNSpoaNRw4W5StYqpJDQO8R9FJBuZUkG2XW35wes2MoAozD%252BkRFLX0cryqexfcR75GNhFvIe5LErK3A6uRJpdFJtd9s3c5Hb98Ukro1M7L0WbeqLyCqok3DDWzkPdTPT2qonixwridevtjAwm2mmTh%252FvAK","clickUrlPrefix":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/"},"isPreview":false,"manifest":{"Integ101.js":"https://m.media-amazon.com/images/I/71Og-vZ54zL.js","Integ22.js":"https://m.media-amazon.com/images/I/91hPZEMrc8L.js","IntegResponsive.css":"https://m.media-amazon.com/images/I/51unMQcITzL.css","IntegResponsive.js":"https://m.media-amazon.com/images/I/A136jQDhcIL.js","IntegSwiperReact.js":"https://m.media-amazon.com/images/I/212FMOrArqL.js","IntegTwitchModalResponsiveGrid.js":"https://m.media-amazon.com/images/I/416y6xb06JL.js","IntegVideoPlayer.js":"https://m.media-amazon.com/images/I/31dknWjPIIL.js","Integintersection-observer.js":"https://m.media-amazon.com/images/I/31n110rR-2L.js","integ.html":"https://m.media-amazon.com/images/I/21W6NUIlZQL.html","101.bundle.js":"https://m.media-amazon.com/images/I/712nq62BcgL.js","101.bundle.min.js":"https://m.media-amazon.com/images/I/71RZTgHmVaL.js","22.bundle.js":"https://m.media-amazon.com/images/I/91Ci09g5z1L.js","22.bundle.min.js":"https://m.media-amazon.com/images/I/91ToMRqBfhL.js","Responsive.bundle.js":"https://m.media-amazon.com/images/I/918k6v1K2kL.js","Responsive.bundle.min.js":"https://m.media-amazon.com/images/I/911CBUzPfKL.js","SwiperReact.bundle.js":"https://m.media-amazon.com/images/I/21kbUXY8-9L.js","SwiperReact.bundle.min.js":"https://m.media-amazon.com/images/I/21NahSAPIoL.js","TwitchModalResponsiveGrid.bundle.js":"https://m.media-amazon.com/images/I/41+62ORdKdL.js","TwitchModalResponsiveGrid.bundle.min.js":"https://m.media-amazon.com/images/I/41cPYQwvwxL.js","VideoPlayer.bundle.js":"https://m.media-amazon.com/images/I/41TfdEgvniL.js","VideoPlayer.bundle.min.js":"https://m.media-amazon.com/images/I/41Rcw+okpAL.js","base.css":"https://m.media-amazon.com/images/I/51A-KiIhI2L.css","base.js":"https://m.media-amazon.com/images/I/01hWehKuy6L.js","intersection-observer.bundle.js":"https://m.media-amazon.com/images/I/31WhpJkOtAL.js","intersection-observer.bundle.min.js":"https://m.media-amazon.com/images/I/31wNdjZVaAL.js","video.css":"https://m.media-amazon.com/images/I/51+cndERLFL.css","video.js":"https://m.media-amazon.com/images/I/01hWehKuy6L.js","zoetrope.css":"https://m.media-amazon.com/images/I/31Q1UZ4RpRL.css","zoetrope.js":"https://m.media-amazon.com/images/I/01hWehKuy6L.js","LoggingClientManager.bundle.js":"https://m.media-amazon.com/images/I/314fEAi7N0L.js","LoggingClientManager.bundle.min.js":"https://m.media-amazon.com/images/I/41zL88vnT5L.js","PerformanceEventManager.bundle.js":"https://m.media-amazon.com/images/I/01nh8G6JicL.js","PerformanceEventManager.bundle.min.js":"https://m.media-amazon.com/images/I/01WGkvo-diL.js","SourceIdToNameMapping.bundle.js":"https://m.media-amazon.com/images/I/01eqwfq5PgL.js","SourceIdToNameMapping.bundle.min.js":"https://m.media-amazon.com/images/I/01KmTqHHwBL.js","react-dom.development.js":"https://m.media-amazon.com/images/I/81Y3viERi7L.js","react-dom.production.min.js":"https://m.media-amazon.com/images/I/61A3EwraFlL.js","react-dom.profiling.min.js":"https://m.media-amazon.com/images/I/71Q5hfLlYnL.js","react.development.js":"https://m.media-amazon.com/images/I/41Z1iFp0J8L.js","react.production.min.js":"https://m.media-amazon.com/images/I/31OyASKbVLL.js"},"isBulkPreview":false,"isIlmPlacement":false,"TTIMeasurementMode":"none","isHomePageSlot":false,"isHomePageAdRefresh":false,"allow3pSellers":true,"asin":"B0CBJCSHGW","callToActionsProperties":{},"video":{"isVideoAd":false,"disableCaptions":false},"horizontalVideos":[],"verticalVideos":[],"squareVideos":[],"brandLogoUrl":"https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9c6b425d-0d51-4bab-8b94-d3c0e21265e8._CR0,0,2000,460_.png","headline":"Descubra la luz de antorcha solar de LQWELL®","customImageDetail":{"hasCustomImage":false},"productDetails":{"customerReviewSummary":{"rating":4,"count":118,"asin":"B0CBJCSHGW","histogram":{"oneStar":8,"twoStar":9,"threeStar":16,"fourStar":11,"fiveStar":56}},"fullPrice":null,"currencySymbol":"€","buyBoxPricePerUnit":{"displayUnitValue":"1.0","displayUnitValueDescription":"Item","unitCountModifier":1},"productSubscribeAndSaveInformation":{"snsDiscountPercent":5,"snsMaxDiscountPercent":15,"defaultSnsDiscountPercentUsed":true,"snsCommonFrequency":0,"snsSignUpPrice":{},"isEligibleForSubscribeAndSave":false},"pricePerUnitMessage":"","isDeal":false,"hasBlackFridayDeal":false,"hasCyberMondayDeal":false,"isPrime":false,"isSnsDiscount":false,"discountData":null,"hasPrimeDayDeal":false,"productGroupTypeInformation":{"productGroupType":"gl_home","isDigital":false},"isDigitalProductOnMobile":false,"isFreshEligible":false,"isWholeFoodsEligible":false,"isCustomerB2B":false,"asinHasSizeDimension":false,"featureBullets":["Impermeable"],"productImage":{"url":"https://m.media-amazon.com/images/I/71okTP69WPL.jpg","height":1600,"width":1600},"offer":null,"productImageList":[{"extension":"jpg","height":1600,"physicalId":"71okTP69WPL","variant":"MAIN","width":1600,"url":"https://m.media-amazon.com/images/I/71okTP69WPL.jpg"},{"extension":"jpg","height":1600,"physicalId":"819+JKVg0+L","variant":"PT01","width":1600,"url":"https://m.media-amazon.com/images/I/819+JKVg0+L.jpg"},{"extension":"jpg","height":1600,"physicalId":"81OUJ2jNTPL","variant":"PT02","width":1600,"url":"https://m.media-amazon.com/images/I/81OUJ2jNTPL.jpg"},{"extension":"jpg","height":1600,"physicalId":"61i2wzOdaYL","variant":"PT03","width":1600,"url":"https://m.media-amazon.com/images/I/61i2wzOdaYL.jpg"},{"extension":"jpg","height":1600,"physicalId":"71-UGKx3KEL","variant":"PT04","width":1600,"url":"https://m.media-amazon.com/images/I/71-UGKx3KEL.jpg"},{"extension":"jpg","height":1600,"physicalId":"81pRF8h570L","variant":"PT05","width":1600,"url":"https://m.media-amazon.com/images/I/81pRF8h570L.jpg"},{"extension":"jpg","height":1600,"physicalId":"71b9JJEiDBL","variant":"PT06","width":1600,"url":"https://m.media-amazon.com/images/I/71b9JJEiDBL.jpg"}],"isOmnibusMarket":true,"isFreshSupported":true,"isWholeFoodsSupported":false,"price":"27,99","priceAmount":27.99,"productTitle":"LQWELL Luces de antorcha solar para exteriores, 8 piezas, 12 LED, lámpara solar con efecto de llama, IP65, impermeable, jardín, camino solar, iluminación de césped para patio trasero (paquete de 8)","energyEfficiency":{"eu2021Standard":false},"showEnergyEfficiency":false,"isPmpOrMario":false,"productImageUrls":["https://m.media-amazon.com/images/I/71okTP69WPL.jpg","https://m.media-amazon.com/images/I/819+JKVg0+L.jpg","https://m.media-amazon.com/images/I/81OUJ2jNTPL.jpg","https://m.media-amazon.com/images/I/61i2wzOdaYL.jpg","https://m.media-amazon.com/images/I/71-UGKx3KEL.jpg","https://m.media-amazon.com/images/I/81pRF8h570L.jpg","https://m.media-amazon.com/images/I/71b9JJEiDBL.jpg"],"isClimatePledgeFriendly":false,"strikeThroughPriceLabel":"","clickUrl":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/http://www.amazon.es/sspa/click?ie=UTF8&spc=MToxMDkxOTE2MTU4Nzg1NzAyNzA6MTcyNzQzNDE4ODpzZF9vZmZzaXRlX2Rlc2t0b3A6MzAwMTUxNTEzMTcyNDMyOjo6Og&url=%2Fdp%2FB0CBJCSHGW%2Fref%3Dsyn_sd_offsite_desktop_50%3Fie%3DUTF8%26psc%3D1%26aref%3DcRyTbHUSz5%26sp_csd%3Dd2lkZ2V0TmFtZT1zZF9vZmZzaXRlX2Rlc2t0b3A%26tag%3Ddradisplay09-21&tag=dradisplay09-21","rawDetailPageUrl":"https://www.amazon.es/dp/B0CBJCSHGW"},"productDetailsList":[{"customerReviewSummary":{"rating":4,"count":118,"asin":"B0CBJCSHGW","histogram":{"oneStar":8,"twoStar":9,"threeStar":16,"fourStar":11,"fiveStar":56}},"fullPrice":null,"currencySymbol":"€","buyBoxPricePerUnit":{"displayUnitValue":"1.0","displayUnitValueDescription":"Item","unitCountModifier":1},"productSubscribeAndSaveInformation":{"snsDiscountPercent":5,"snsMaxDiscountPercent":15,"defaultSnsDiscountPercentUsed":true,"snsCommonFrequency":0,"snsSignUpPrice":{},"isEligibleForSubscribeAndSave":false},"pricePerUnitMessage":"","isDeal":false,"hasBlackFridayDeal":false,"hasCyberMondayDeal":false,"isPrime":false,"isSnsDiscount":false,"discountData":null,"hasPrimeDayDeal":false,"productGroupTypeInformation":{"productGroupType":"gl_home","isDigital":false},"isDigitalProductOnMobile":false,"isFreshEligible":false,"isWholeFoodsEligible":false,"isCustomerB2B":false,"asinHasSizeDimension":false,"featureBullets":["Impermeable"],"productImage":{"url":"https://m.media-amazon.com/images/I/71okTP69WPL.jpg","height":1600,"width":1600},"offer":null,"productImageList":[{"extension":"jpg","height":1600,"physicalId":"71okTP69WPL","variant":"MAIN","width":1600,"url":"https://m.media-amazon.com/images/I/71okTP69WPL.jpg"},{"extension":"jpg","height":1600,"physicalId":"819+JKVg0+L","variant":"PT01","width":1600,"url":"https://m.media-amazon.com/images/I/819+JKVg0+L.jpg"},{"extension":"jpg","height":1600,"physicalId":"81OUJ2jNTPL","variant":"PT02","width":1600,"url":"https://m.media-amazon.com/images/I/81OUJ2jNTPL.jpg"},{"extension":"jpg","height":1600,"physicalId":"61i2wzOdaYL","variant":"PT03","width":1600,"url":"https://m.media-amazon.com/images/I/61i2wzOdaYL.jpg"},{"extension":"jpg","height":1600,"physicalId":"71-UGKx3KEL","variant":"PT04","width":1600,"url":"https://m.media-amazon.com/images/I/71-UGKx3KEL.jpg"},{"extension":"jpg","height":1600,"physicalId":"81pRF8h570L","variant":"PT05","width":1600,"url":"https://m.media-amazon.com/images/I/81pRF8h570L.jpg"},{"extension":"jpg","height":1600,"physicalId":"71b9JJEiDBL","variant":"PT06","width":1600,"url":"https://m.media-amazon.com/images/I/71b9JJEiDBL.jpg"}],"isOmnibusMarket":true,"isFreshSupported":true,"isWholeFoodsSupported":false,"price":"27,99","priceAmount":27.99,"productTitle":"LQWELL Luces de antorcha solar para exteriores, 8 piezas, 12 LED, lámpara solar con efecto de llama, IP65, impermeable, jardín, camino solar, iluminación de césped para patio trasero (paquete de 8)","energyEfficiency":{"eu2021Standard":false},"showEnergyEfficiency":false,"isPmpOrMario":false,"productImageUrls":["https://m.media-amazon.com/images/I/71okTP69WPL.jpg","https://m.media-amazon.com/images/I/819+JKVg0+L.jpg","https://m.media-amazon.com/images/I/81OUJ2jNTPL.jpg","https://m.media-amazon.com/images/I/61i2wzOdaYL.jpg","https://m.media-amazon.com/images/I/71-UGKx3KEL.jpg","https://m.media-amazon.com/images/I/81pRF8h570L.jpg","https://m.media-amazon.com/images/I/71b9JJEiDBL.jpg"],"isClimatePledgeFriendly":false,"strikeThroughPriceLabel":"","clickUrl":"https://aax-eu.amazon-adsystem.com/x/c/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/http://www.amazon.es/sspa/click?ie=UTF8&spc=MToxMDkxOTE2MTU4Nzg1NzAyNzA6MTcyNzQzNDE4ODpzZF9vZmZzaXRlX2Rlc2t0b3A6MzAwMTUxNTEzMTcyNDMyOjo6Og&url=%2Fdp%2FB0CBJCSHGW%2Fref%3Dsyn_sd_offsite_desktop_50%3Fie%3DUTF8%26psc%3D1%26aref%3DcRyTbHUSz5%26sp_csd%3Dd2lkZ2V0TmFtZT1zZF9vZmZzaXRlX2Rlc2t0b3A%26tag%3Ddradisplay09-21&tag=dradisplay09-21","rawDetailPageUrl":"https://www.amazon.es/dp/B0CBJCSHGW"}],"thirdPartyClickUrls":[""],"identifier":"hl-lo","currentScreen":"banner-md","slotName":"inline20_728x90","isNonEndemicAd":false,"format":"responsive","isShowroomCreative":false,"pixelUrl":"https://aax-eu.amazon-adsystem.com/x/px/JGkR3a4G0IhjNjEr9M_5LOoAAAGSMxnoqwMAAADKAQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDEgICCIUsMM/","sourceId":202,"isMobileHomepageCard":false,"isMobileApp":false,"isMLDisabled":false,"mlParameters":{"isMLDisabled":false,"priceColor":"","priceFontSize":"","currencyStyle":"","priceFontWeight":"","priceFontStyle":"","headlineFontStyle":"normal","headlineFontWeight":"font-bold","headlineFontSize":"","headlineFontColor":"","primeLogoSize":"","ratingColor":"","ratingFontSize":"","ratingsFontWeight":"","ratingsFontStyle":"","productTitleColor":"black","productTitleFontSize":"","productTitleFontWeight":"normal","productTitleFontStyle":"font-bold","productTitleLineHeight":"","productTitleOverride":"","backgroundColor":"","imageAssets":[]},"activeExperiments":{},"width":728,"height":90,"isTailSizeCreative":false,"isDarkAd":false,"isTwitchModal":false,"isMirrorC":false,"isPreviewLeadGenForm":false,"isPreviewLeadGenThankYouView":false,"isLeadGenCreative":false,"isExpandableVideoAd":false,"leadGenAdEventPixelUrls":null,"isShoppableModalEnabled":false,"i18nStrings":{"shop_now":"Descúbrelo","buy_now":"Comprar ahora","shop_store":"Comprar en la tienda","learn_more":"Más información","visit_page":"Visitar la página","set_up_now":"Configurar ahora","add_to_cart":"Añadir a la cesta","featured_by":"Destacado por {brandName}","product_features":"Características del producto","about_this_item":"Acerca de este producto","loading":"Cargando...","shopTheStore":"Comprar en la tienda","shopBrand":"Comprar {brandName}","coupon_percent":"Cupón del {percent}","coupon_amount":"Cupón de {number}","see_buying_options":"Ver opciones de compra","subscribe_and_save_badge":"Ahorra un {percent}","subscribe_and_save":"Suscríbete y ahorra","save_amount_percent":"Ahorra un {number,percent}","save_amount_percent_more":"Ahorra un {number,percent} más","with_subscribe_and_save":"con Suscríbete y ahorra","with_coupon":"con cupón","deal_of_the_day":"Oferta del día","lightning_deal":"Oferta flash","best_deal":"Oferta destacada","prime_day_deal":"Oferta de Prime Day","prime_big_deal":"Oferta Prime","prime_exclusive_deal":"Oferta exclusiva Prime","prime_early_access":"Oferta Prime","black_friday_deal":"Oferta de Black Friday","cyber_monday_deal":"Oferta de Cyber Monday","product_fiche":"Ficha del producto","deal_disclaimer":{"value":"&#8251; Hasta agotar stock","note":"Discount disclaimer specific for Japanese marketplace"},"terms_and_conditions":"Se aplican términos y condiciones","terms_apply":"Se aplican condiciones","submit":"Enviar","sign_up":"Regístrate","inquire":"Consultar","request_quote":"Solicitar presupuesto","first_name":"Nombre","last_name":"Apellidos","full_name":"Nombre completo","email":"Correo electrónico","phone_number":"Número de teléfono","city":"Ciudad","zip_code":"Código postal","all_fields_required_message":"Rellena todos los campos para enviar","form_submission_error_message":"Se ha producido un error en tu solicitud de envío","email_required_message":"El correo electrónico es obligatorio","email_invalid_message":"El correo electrónico no es válido","full_name_required_message":"El nombre completo es obligatorio","full_name_invalid_message":"El nombre completo no es válido","first_name_required_message":"Es obligatorio indicar el nombre","first_name_invalid_message":"El nombre no es válido","last_name_required_message":"Los apellidos son obligatorios","last_name_invalid_message":"Los apellidos no son válidos","phone_number_required_message":"El número de teléfono es obligatorio","phone_number_invalid_message":"El número de teléfono no es válido","zip_code_required_message":"Es obligatorio indicar el código postal","zip_code_invalid_message":"El código postal no es válido","city_required_message":"Es obligatorio indicar la ciudad","city_invalid_message":"La ciudad no es válida","form_disclosure":"Al hacer clic en Enviar, aceptas enviar tu información al anunciante y a Amazon, cada uno de los cuales se compromete a utilizarla de conformidad con su política de privacidad correspondiente. También aceptas que el anunciante pueda utilizar tu información para ponerse en contacto contigo en relación con sus productos y servicios.","advertiser_privacy_notice":"Aviso de privacidad del anunciante","amazon_privacy_notice":"Aviso de privacidad de Amazon","please_review_privacy_notice":"Consulta el {advertiserPrivacyNotice} y el {AmazonPrivacyNotice}","visit_website":"Visitar el sitio web","thank_you_request":"Gracias por tu solicitud","sponsored_by":"Patrocinado por ","sponsored_by_other_brands":"Patrocinado por {Otras marcas}","sponsored":"Patrocinado","sponsored_ad":"Anuncio patrocinado","pre_order":"Comprar en preventa","confirm_add_to_cart":"¿Quieres añadir este producto a la cesta?","ok":"ACEPTAR","cancel":"Cancelar","close":"Cerrar","details_and_delivery":"Detalles y entrega","tax_message":{"value":"con IVA","note":"Germany marketplace specific value added tax"},"savings_text":"Ahorra un","preorder_release_date":"Se lanza el {date}","preorder_text":"No ha salido aún a la venta","Ad":"Anuncio patrocinado","brand":"de {brand}","star_ratings":{"value":"{number} de 5 estrellas.","note":"Example: '4.5 out of 5'"},"starRatingLabel":"{count} estrella","product_description":"Descripción del producto","reviewsCount":"{number} reseñas de productos.","prime":"Apto para Amazon Prime.","shop_on_amazon":"Comprar en Amazon","brand_creative_max_saving":{"value":"Ahorra hasta el {percent} en {brand}","note":"Example: 'Save up to 15% on Tide'"},"fullProductInformation":"Ver la información completa del producto","customer_ratings":"Opiniones de clientes","snsHeadline":"Suscríbete y ahorra:","showMore":"Mostrar más","showLess":"Mostrar menos","oneTimePurchaseHeadline":"Una sola compra:","saveOnRepeatDeliveries":"Ahorra {savingsNowAmount} ahora y hasta {savingsMoreAmount} en entregas repetidas.","starNumberSingular":"{count} estrella","starNumberPlural":"{count} estrellas","globalReviewCount":"{reviewCount} reseñas globales","ratingsOutOf":"{rating} de {maxStars}","fiveStarPercentage":"{percent} valoración de 5 estrellas de los clientes","listPrice":"Precio de publicación:","dealPrice":"Precio de la oferta:","youSave":"Puedes ahorrar:","brand_creative_min_saving":"Ahorra el {percent} o más en {brand}","brand_creative_all_saving":"Ahorra el {percent} en {brand}","ad_feedback":"Dejar comentarios sobre el anuncio patrocinado","featured_product":"Producto destacado","related_to_your_views":"Relacionado con lo que has visto","featured_product_best_deal":"Ahorro y ventas","featured_product_lightning_deal":"Oferta por tiempo limitado","featured_product_deal_of_the_day":"Oferta del día","featured_product_coupon":"Ahorra {number,percent} con cupón","featured_product_discount_at_checkout":"Descuento aplicado al finalizar la compra","featured_product_sns":"Ahorra {percent} con Suscríbete y ahorra","quantity_discount_badge_medium":"IVA incluido, con descuentos por cantidad","local_business_for_you":"Empresas locales para ti","gl_apparel":"Destacado en Ropa y accesorios","gl_art_craft_supplies":"Destacado en Suministros para arte y manualidades","gl_audible":"Destacado en Libros de Audible","gl_automotive":"Destacado en Coche y moto","gl_baby_product":"Destacado en Productos para bebé","gl_beauty":"Destacado en Belleza","gl_biss":"Destacado en Equipamiento empresarial","gl_book":"Destacado en Libros","gl_camera":"Destacado en Cámaras y equipos","gl_consumables_email_gift_cards":"Destacado en Tarjetas regalo","gl_consumables_physical_gift_cards":"Destacado en Tarjetas regalo","gl_digital_ebook_purchase":"Destacado en Libros digitales","gl_digital_music_purchase":"Destacado en Música digital","gl_digital_periodicals":"Destacado en Noticias y revistas","gl_digital_software":"Destacado en Software","gl_digital_video_download":"Destacado en Películas digitales","gl_digital_video_games":"Destacado en Videojuegos digitales","gl_drugstore":"Destacado en Salud y cuidado personal","gl_dvd":"Destacado en Películas","gl_electronics":"Destacado en Electrónica","gl_fresh_perishable":"Destacado en Alimentación y bebidas","gl_fresh_prepared":"Destacado en Alimentación y bebidas","gl_fresh_produce":"Destacado en Alimentación y bebidas","gl_furniture":"Destacado en Muebles","gl_gift_card":"Destacado en Tarjetas regalo","gl_grocery":"Destacado en Alimentación y bebidas","gl_guild":"Destacado en Hecho a mano","gl_home":"Destacado en Artículos para el hogar","gl_home_entertainment":"Destacado en Entretenimiento en el hogar","gl_home_improvement":"Destacado en Bricolaje y herramientas","gl_jewelry":"Destacado en Joyería","gl_kitchen":"Destacado en Cocina","gl_lawn_and_garden":"Destacado en Patio y jardín","gl_luggage":"Destacado en Equipaje","gl_luxury_beauty":"Destacado en Belleza profesional","gl_major_appliances":"Destacado en Electrodomésticos","gl_mobile_apps":"Destacado en Aplicaciones para móviles","gl_music":"Destacado en Música","gl_musical_instruments":"Destacado en Instrumentos musicales","gl_office_product":"Destacado en Suministros de oficina","gl_outdoors":"Destacado en Equipos de exterior","gl_pantry":"Destacado en Pantry","gl_pc":"Destacado en Informática y accesorios","gl_pet_products":"Destacado en Mascotas","gl_shoes":"Destacado en Zapatos y complementos","gl_softlines_private_label":"Destacado en Ropa y accesorios","gl_sports":"Destacado en Deportes y ejercicio","gl_tires":"Destacado en Neumáticos","gl_tools":"Destacado en Herramientas","gl_toy":"Destacado en Juguetes","gl_video_games":"Destacado en Videojuegos","gl_watch":"Destacado en Relojes","gl_wine":"Destacado en Vinos y licores","gl_wireless":"Destacado en Accesorios inalámbricos","click_to_view_product":"Haz clic para ver este producto en Amazon","click_for_more_information":"Haz clic para obtener más información"},"isTermsAndConditions":false,"isNonEndemicSparkleAd":false,"isNonEndemicZoetropeAd":false,"isLiveImageExperiment":false,"openLeadFormInPage":false,"decorationId":"20022419161498","leadFormLandingPageUrl":"","isRioPricing":false,"isProductCollectionCreative":false,"isSBDemand":false,"shouldRenderLiteVideoPlayer":false}));
+ loggingManager.addViewabilityListener($ad);
+</script>
+
+
+
+
+<script src="./saved_resource(1)"></script><script src="./csmv2(1).js.descarga"></script><script src="./adforensics_basic(1).js.descarga"></script>
+
+ <div id="inline20_webbug" style="display:none;" data-flowtype="pubTech">
+ </div>
+
+<script defer="">setTimeout( function(){SFClient.getDebugInfo({key: "updateAdDetails"}); },0);</script><script defer="">setTimeout(function(){SFClient.customMessage("sendMetrics",JSON.stringify({"slot": "inline20", "event": "fireload"}));},0);</script>
+    
+
+<img id="ape_impression" src="./imp(1)" style="display: none;"></body></html>
