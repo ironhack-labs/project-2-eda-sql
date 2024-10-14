@@ -1,3 +1,5 @@
+USE lego;
+
 -- 1.	Which LEGO themes have the most sets?
 -- Identify the themes that feature the highest number of sets to understand their popularity.
 
