@@ -1,0 +1,58 @@
+# GLOBAL HEALTH OBSERVATORY DOWNLOAD
+
+This zip data file has been downloaded from:
+
+- **Name**: World Health Statistics  
+- **URL**: [https://www.who.int/data/gho/data/themes/world-health-statistics](https://www.who.int/data/gho/data/themes/world-health-statistics)  
+- **Description**:  
+  The United Nations Sustainable Development Goals (SDGs) are 17 goals with 169 targets that all 191 UN Member States have agreed to try to achieve by the year 2030. Health has a central place in **SDG 3**: *Ensure healthy lives and promote well-being for all at all ages*, underpinned by 13 targets that cover a wide spectrum of WHO’s work. Almost all of the other 16 goals are directly related to health or will contribute to health indirectly.
+
+  The new agenda, which builds on the Millennium Development Goals, aims to be relevant to all countries and focuses on improving equity to meet the needs of women, children, and the poorest, most disadvantaged people. WHO's annual *World Health Statistics* reports present the most recent health statistics for the WHO Member States.
+
+# Dataset Field Descriptions
+
+- **Id**: A unique identifier for each record in the dataset.
+
+- **IndicatorCode**: The code corresponding to the specific indicator being measured (e.g., `"WSH_HYGIENE_BASIC"`).
+
+- **SpatialDimension**: The type of spatial categorization, such as `"COUNTRY"`, indicating the data pertains to a country.
+
+- **SpatialDimensionValueCode**: The specific code for the spatial dimension (e.g., `"BEN"` for Benin, `"KGZ"` for Kyrgyzstan).
+
+- **ParentLocationCode**: Code for the broader geographic area (e.g., `"AFR"` for Africa, `"EUR"` for Europe).
+
+- **ParentLocation**: The name of the parent location corresponding to the code (e.g., `"Africa"`, `"Europe"`).
+
+- **TimeDimension**: Indicates the temporal unit of the data (e.g., `"YEAR"` for annual data).
+
+- **TimeDim**: The specific year for which the data is reported.
+
+- **DisaggregatingDimension1**: A variable for breaking down the data, such as residence type.
+
+- **DisaggregatingDimension1ValueCode**: The specific code for the disaggregating variable (e.g., `"RESIDENCEAREATYPE_RUR"` for rural areas).
+
+- **DisaggregatingDimension2**, **DisaggregatingDimension2ValueCode**: Placeholder for additional disaggregation dimensions and their values (if applicable).
+
+- **DisaggregatingDimension3**, **DisaggregatingDimension3ValueCode**: Additional dimensions for further breakdowns, though these columns are empty in this sample.
+
+- **DataSourceDimension**: A placeholder for the source of the data (e.g., `"Survey"`).
+
+- **DataSourceDimensionValueCode**: Code corresponding to the data source (if applicable).
+
+- **Value**: The actual value measured for the indicator.
+
+- **NumericValue**: A numeric representation of the value (possibly formatted for computations).
+
+- **Low**: The lower bound of the confidence interval or range for the value (if applicable).
+
+- **High**: The upper bound of the confidence interval or range for the value (if applicable).
+
+- **Comments**: Additional notes or context about the data.
+
+- **Date**: The date the record was last updated or reported.
+
+- **TimeDimensionValue**: Another reference for the time period (same as **TimeDim**).
+
+- **TimeDimensionBegin**: Start date for the time period.
+
+- **TimeDimensionEnd**: End date for the time period.
