@@ -1,0 +1,5 @@
+The fatalities dataset provides information on individuals killed in the Israeli-Palestinian conflict between September 2000 and September 2023. The data is collected and investigated by B'Tselem, The Israeli Information Center for Human Rights in the Occupied Territories. 
+
+Meanwhile the Demolitions database, from B'Tselem as well, details demolitions between January 2004 and August 2023. 
+
+Some challenges in running queries between the datasets were due to them not sharing an exact key, their datetime values begin and end at different times and are repeated. Their values for districts regions and area are similar, but not equivalent. I needed to create separate tables with only the values they shared. 
